@@ -1,9 +1,13 @@
+import LoginComponent from '../../Components/LoginComponent/LoginComponent';
 import './_Login.scss'
 
-const Login = () =>{
-    return(
-        <div className="container-login">
+import banner from '../../../image/horta.png'
 
+const Login = () => {
+    return (
+        <div className="container-login">
+            <LoginComponent />
+            <img src={banner} alt="" />
         </div>
     )
 }
