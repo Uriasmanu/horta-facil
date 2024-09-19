@@ -1,0 +1,16 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "HortaFacil.csproj",
+        "use": "@vercel/dotnet"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "HortaFacil.dll"
+      }
+    ]
+  }
+  
