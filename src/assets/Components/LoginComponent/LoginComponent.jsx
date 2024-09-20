@@ -1,6 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import './_LoginComponent.scss'
 
 const LoginComponent = () => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate('/inicio'); // Volta para a última página acessada
+    };
+
     return (
         <div className="container-LoginComponent">
             <form className="form">
@@ -10,7 +17,7 @@ const LoginComponent = () => {
                 <div className="login-with">
                   
                 </div>
-                <button className="button-confirm">Entrar →</button>
+                <button className="button-confirm" onClick={handleClick}>Entrar →</button>
             </form>
         </div>
     )
