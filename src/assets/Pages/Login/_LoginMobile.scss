@@ -1,0 +1,24 @@
+@media (max-width: 768px) {
+  .container-login {
+    display: flex;
+    width: 100vw;
+    box-sizing: border-box;
+    height: 100vh;
+    justify-content: space-between;
+    background: #c9b56d;
+
+    .component {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      
+      
+    }
+
+    .banner {
+      display: none;
+    }
+  }
+}
