@@ -4,7 +4,9 @@ import './_Recursos.scss'
 const Recursos = () => {
     return (
         <div className="container-Recursos">
-            <SideBar />
+            <div className="contain-sidebar">
+                <SideBar />
+            </div>
         </div>
     )
 }

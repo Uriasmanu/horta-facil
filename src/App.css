@@ -3,5 +3,11 @@
   padding: 0;
   list-style: none;
   font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+
+.contain-sidebar{
+  padding: 0% 2%;
+  box-sizing: border-box;
 }
 

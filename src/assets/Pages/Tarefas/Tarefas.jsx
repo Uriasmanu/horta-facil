@@ -4,7 +4,9 @@ import './_Tarefas.scss'
 const Tarefas = () => {
     return (
         <div className="container-Tarefas">
-            <SideBar />
+            <div className="contain-sidebar">
+                <SideBar />
+            </div>
         </div>
     )
 }

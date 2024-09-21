@@ -4,7 +4,9 @@ import './_Voluntarios.scss'
 const Voluntarios = () => {
     return (
         <div className="container-Voluntarios">
-            <SideBar />
+            <div className="contain-sidebar">
+                <SideBar />
+            </div>
         </div>
     )
 }
