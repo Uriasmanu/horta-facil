@@ -1,4 +1,6 @@
-import SideBar from '../../Components/Recursos/SideBar';
+
+import SideBar from '../../Components/SideBar/SideBar';
+import SideBarMobile from '../../Components/SideBarMobile/SideBarMobile';
 import './_Recursos.scss'
 
 const Recursos = () => {
@@ -6,6 +8,9 @@ const Recursos = () => {
         <div className="container-Recursos">
             <div className="contain-sidebar">
                 <SideBar />
+            </div>
+            <div className="contain-sidebarMobile">
+                <SideBarMobile />
             </div>
         </div>
     )
