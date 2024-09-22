@@ -3,6 +3,7 @@ import BotaoRegistrar from '../../Components/BotaoRegistrar/BotaoRegistrar';
 import CardPantas from '../../Components/CardPantas/CardPantas';
 import SideBar from '../../Components/SideBar/SideBar';
 import SideBarMobile from '../../Components/SideBarMobile/SideBarMobile';
+import Tarefas from '../../Components/Tarefas/Tarefas';
 import './_Inicio.scss'
 
 const Inicio = () => {
@@ -28,6 +29,13 @@ const Inicio = () => {
             <div className="secao agenda">
                 <div>
                     <h2>Agenda de Tarefas</h2>
+                    <div className="colecao-tarefas">
+                        <Tarefas />
+                        <Tarefas />
+                        <Tarefas />
+                        <Tarefas />
+                        <Tarefas />
+                    </div>
                 </div>
                 <h2>Colheita</h2>
             </div>
