@@ -13,16 +13,18 @@ const Inicio = () => {
             <div className="contain-sidebarMobile">
                 <SideBarMobile />
             </div>
-            <div className="plantas">
+            <div className="secao plantas">
                 <h2>Plantas cadastradas</h2>
             </div>
-            <div className="agenda">
+            <div className="secao agenda">
                 <div>
                     <h2>Plantas cadastradas</h2>
                 </div>
                 <h2>Colheita</h2>
             </div>
-            <BotaoRegistrar/>
+            <div className="registrar">
+                <BotaoRegistrar />
+            </div>
         </div>
     )
 }

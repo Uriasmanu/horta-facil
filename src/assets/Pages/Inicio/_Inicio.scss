@@ -5,7 +5,16 @@
     background: #6FA77B;
     justify-content: space-between;
 
-    .plantas{
+    .secao{
         padding: 5%;
+
+        h2{
+            font-size: 2.5rem;
+            color: #fff;
+        }
+    }
+
+    .registrar{
+        margin: 2%;
     }
 }
