@@ -11,3 +11,19 @@
   box-sizing: border-box;
 }
 
+.contain-sidebarMobile{
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .contain-sidebar{
+    display: none;
+  }
+
+  .contain-sidebarMobile{
+    display: block;
+    
+  }
+
+}
+
