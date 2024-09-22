@@ -18,7 +18,11 @@ const Inicio = () => {
                 <h2>Plantas cadastradas</h2>
                 <div className="colecao-cards">
                     <CardPantas />
-                    
+                    <CardPantas />
+                    <CardPantas />
+                    <CardPantas />
+                    <CardPantas />
+                    <CardPantas />
                 </div>
             </div>
             <div className="secao agenda">
