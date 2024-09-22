@@ -12,6 +12,20 @@
             font-size: 2.5rem;
             color: #fff;
         }
+
+        .colecao-cards{
+            margin-top: 10%;
+            display: flex;
+            flex-wrap: wrap;
+            width: 500px;
+            gap: 15px;
+            height: 90%;
+            overflow-y: auto;
+            
+            &::-webkit-scrollbar {
+                display: none; /* Oculta a barra de rolagem */
+            }
+        }
     }
 
     .registrar{
