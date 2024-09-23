@@ -19,11 +19,7 @@ const Inicio = () => {
                 <h2>Plantas cadastradas</h2>
                 <div className="colecao-cards">
                     <CardPantas />
-                    <CardPantas />
-                    <CardPantas />
-                    <CardPantas />
-                    <CardPantas />
-                    <CardPantas />
+                    
                 </div>
             </div>
             <div className="secao agenda">
@@ -31,13 +27,11 @@ const Inicio = () => {
                     <h2>Agenda de Tarefas</h2>
                     <div className="colecao-tarefas">
                         <Tarefas />
-                        <Tarefas />
-                        <Tarefas />
-                        <Tarefas />
-                        <Tarefas />
+                        
                     </div>
                 </div>
                 <h2>Colheita</h2>
+                <div className="coletar"></div>
             </div>
             <div className="registrar">
                 <BotaoRegistrar />
