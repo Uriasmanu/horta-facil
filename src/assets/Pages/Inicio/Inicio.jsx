@@ -5,6 +5,7 @@ import SideBarMobile from '../../Components/SideBarMobile/SideBarMobile';
 import Tarefas from '../../Components/Tarefas/Tarefas';
 
 import './_Inicio.scss';
+import './_InicioMobile.scss';
 import { useColeta } from '../../Context/DropDragContext';
 
 const Inicio = () => {

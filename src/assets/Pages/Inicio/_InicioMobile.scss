@@ -1,0 +1,59 @@
+@media (max-width: 600px) {
+  .container-Inicio {
+    display: flex;
+    box-sizing: border-box;
+    height: 100vh;
+    background: #6fa77b;
+    justify-content: space-between;
+    flex-direction: column;
+
+    .secao {
+      padding: 5%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      h2 {
+        font-size: 2.5rem;
+        color: #fff;
+        text-align: center;
+        width: 100%;
+      }
+
+      .colecao-cards {
+        margin-top: 10%;
+        display: flex;
+        flex-wrap: wrap;
+        width: 500px;
+        gap: 15px;
+        height: 90%;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+          display: none; /* Oculta a barra de rolagem */
+        }
+      }
+    }
+
+    .agenda {
+      display: flex;
+      flex-direction: column;
+      gap: 5%;
+
+      .colecao-tarefas {
+        margin-top: 5%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .coletar {
+        display: none;
+      }
+    }
+
+    .registrar {
+      margin: 2%;
+    }
+  }
+}
