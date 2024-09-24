@@ -6,10 +6,12 @@ import NotFound from './assets/Pages/NotFound/NotFound';
 import Voluntarios from './assets/Pages/Voluntarios/Voluntarios';
 import Tarefas from './assets/Pages/Tarefas/Tarefas';
 import Recursos from './assets/Pages/Recursos/Recursos';
+import { ColetarProvider } from './assets/Context/DropDragContext';
 
 function App() {
 
   return (
+    <ColetarProvider>
     <Router>
       <Routes>
         <Route path='/' element={<Login />} />
@@ -20,6 +22,7 @@ function App() {
         <Route path='*' element={<NotFound/>} />
       </Routes>
     </Router>
+    </ColetarProvider>
   )
 }
 

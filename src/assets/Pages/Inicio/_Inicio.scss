@@ -1,58 +1,61 @@
-.container-Inicio{
+.container-Inicio {
+  display: flex;
+  box-sizing: border-box;
+  height: 100vh;
+  background: #6fa77b;
+  justify-content: space-between;
+
+  .secao {
+    padding: 5%;
     display: flex;
-    box-sizing: border-box;
-    height: 100vh;
-    background: #6FA77B;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
 
-    .secao{
-        padding: 5%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        h2{
-            font-size: 2.5rem;
-            color: #fff;
-            text-align: center;
-            width: 100%;
-        }
-
-        .colecao-cards{
-            margin-top: 10%;
-            display: flex;
-            flex-wrap: wrap;
-            width: 500px;
-            gap: 15px;
-            height: 90%;
-            overflow-y: auto;
-            
-            &::-webkit-scrollbar {
-                display: none; /* Oculta a barra de rolagem */
-            }
-        }
+    h2 {
+      font-size: 2.5rem;
+      color: #fff;
+      text-align: center;
+      width: 100%;
     }
 
-    .agenda{
-        display: flex;
-        flex-direction: column;
-        gap: 5%;
+    .colecao-cards {
+      margin-top: 10%;
+      display: flex;
+      flex-wrap: wrap;
+      width: 500px;
+      gap: 15px;
+      height: 90%;
+      overflow-y: auto;
 
-        .colecao-tarefas{
-            margin-top: 5%;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+      &::-webkit-scrollbar {
+        display: none; /* Oculta a barra de rolagem */
+      }
+    }
+  }
 
-        .coletar{
-            width: 290px;
-            height: 380px;
-            border: dashed 5px #827033 ;
-        }
+  .agenda {
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+
+    .colecao-tarefas {
+      margin-top: 5%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
 
-    .registrar{
-        margin: 2%;
+    .coletar {
+      width: 240px;
+      height: 300px;
+      border: dashed 5px #827033;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+  }
+
+  .registrar {
+    margin: 2%;
+  }
 }

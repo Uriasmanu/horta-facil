@@ -1,15 +1,14 @@
 import './_CardPantas.scss'
 import legume from '../../../image/Greenery.svg'
+import PropTypes from 'prop-types';
 
 const CardPantas = ({ data, onDragStart }) => {
     return (
         <div
             className="container-CardPantas"
             draggable
-            onDragStart={(e) => {
-                e.dataTransfer.setData('application/json', JSON.stringify(data));
-                onDragStart();
-            }}
+            onDragStart={(event) => onDragStart(event, data)}
+            
         >
 
             <div className="card">
@@ -26,5 +25,11 @@ const CardPantas = ({ data, onDragStart }) => {
         </div>
     )
 }
+
+CardPantas.propTypes = {
+    data: PropTypes.object.isRequired,
+    index: PropTypes.number.isRequired,
+    onDragStart: PropTypes.func.isRequired, // Garantindo que onDragStart é passado como função
+};
 
 export default CardPantas;
