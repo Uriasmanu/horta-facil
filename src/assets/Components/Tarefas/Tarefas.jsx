@@ -1,4 +1,5 @@
 import './_Tarefas.scss'
+import './_TarefasMobile.scss'
 
 const Tarefas = () => {
     return (

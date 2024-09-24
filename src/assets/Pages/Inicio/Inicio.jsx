@@ -13,11 +13,34 @@ const Inicio = () => {
 
     return (
         <div className="container-Inicio">
-            <div className="contain-sidebar">
-                <SideBar />
+            
+            
+            <div className="registrar">
+                <BotaoRegistrar />
             </div>
-            <div className="contain-sidebarMobile">
-                <SideBarMobile />
+            <div className="secao agenda">
+                <div>
+                    <h2>Agenda de Tarefas</h2>
+                    <div className="colecao-tarefas">
+                        <Tarefas />
+                    </div>
+                </div>
+                
+                <div
+                    className="coletar"
+                    onDrop={(e) => onDrop(e, 'colhidos')}
+                    onDragOver={onDragOver}
+                >
+                    <h2>Colheita</h2>
+                    {colhidos.map((planta, index) => (
+                        <CardPantas
+                            key={planta.id} // Use um identificador único
+                            data={planta}
+                            index={index}
+                            onDragStart={(event) => onDragStart(event, planta)}
+                        />
+                    ))}
+                </div>
             </div>
             <div className="secao plantas">
                 <h2>Plantas cadastradas</h2>
@@ -36,31 +59,12 @@ const Inicio = () => {
                     ))}
                 </div>
             </div>
-            <div className="secao agenda">
-                <div>
-                    <h2>Agenda de Tarefas</h2>
-                    <div className="colecao-tarefas">
-                        <Tarefas />
-                    </div>
-                </div>
-                <h2>Colheita</h2>
-                <div
-                    className="coletar"
-                    onDrop={(e) => onDrop(e, 'colhidos')}
-                    onDragOver={onDragOver}
-                >
-                    {colhidos.map((planta, index) => (
-                        <CardPantas
-                            key={planta.id} // Use um identificador único
-                            data={planta}
-                            index={index}
-                            onDragStart={(event) => onDragStart(event, planta)}
-                        />
-                    ))}
-                </div>
+            
+            <div className="contain-sidebarMobile">
+                <SideBarMobile />
             </div>
-            <div className="registrar">
-                <BotaoRegistrar />
+            <div className="contain-sidebar">
+                <SideBar />
             </div>
         </div>
     );
