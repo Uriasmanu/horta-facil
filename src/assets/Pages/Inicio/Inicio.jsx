@@ -8,6 +8,7 @@ import './_Inicio.scss';
 import './_InicioMobile.scss';
 import { useColeta } from '../../Context/DropDragContext';
 
+
 const Inicio = () => {
     const { items, colhidos, onDragStart, onDrop, onDragOver } = useColeta();
 
@@ -21,6 +22,7 @@ const Inicio = () => {
             <div className="secao agenda">
                 <div>
                     <h2>Agenda de Tarefas</h2>
+                    
                     <div className="colecao-tarefas">
                         <Tarefas />
                     </div>

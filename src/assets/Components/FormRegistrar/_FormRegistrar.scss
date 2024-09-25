@@ -7,7 +7,7 @@
     --bg-color: #fff;
     --main-color: #323232;
     padding: 20px;
-    background: lightgrey;
+    background: #BFE6AD;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -16,13 +16,15 @@
     border-radius: 5px;
     border: 2px solid var(--main-color);
     box-shadow: 4px 4px var(--main-color);
+    width: 300px;
+    box-sizing: border-box;
   }
 
   .title {
     color: var(--font-color);
     font-weight: 900;
     font-size: 20px;
-    margin-bottom: 25px;
+
   }
 
   .title span {
@@ -30,9 +32,27 @@
     font-weight: 600;
     font-size: 17px;
   }
+  .nome {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--font-color);
+    padding: 5px 10px;
+    outline: none;
+  }
+
+  .dias{
+    display: flex;
+    gap: 20px;
+  }
 
   .input {
-    width: 250px;
+    width: 80px;
     height: 40px;
     border-radius: 5px;
     border: 2px solid var(--main-color);
@@ -87,7 +107,7 @@
   }
 
   .button-confirm {
-    margin: 50px auto 0 auto;
+    
     width: 120px;
     height: 40px;
     border-radius: 5px;
