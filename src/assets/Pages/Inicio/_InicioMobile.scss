@@ -4,8 +4,10 @@
     box-sizing: border-box;
     height: 100vh;
     background: #6fa77b;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-direction: column;
+    
+    
 
     .secao {
       padding: 5%;
@@ -14,7 +16,7 @@
       align-items: center;
 
       h2 {
-        font-size: 2.5rem;
+        font-size: 1.5rem;
         color: #fff;
         text-align: center;
         width: 100%;
@@ -23,11 +25,13 @@
       .colecao-cards {
         margin-top: 10%;
         display: flex;
-        flex-wrap: wrap;
-        width: 500px;
+        flex-direction: row;
+        width: 100%;
         gap: 15px;
-        height: 90%;
-        overflow-y: auto;
+        height: 35vh;
+        overflow-x: auto; /* Altera para rolagem horizontal */
+        scroll-behavior: smooth;
+        flex-wrap: nowrap;
 
         &::-webkit-scrollbar {
           display: none; /* Oculta a barra de rolagem */
@@ -45,6 +49,7 @@
         display: flex;
         flex-direction: column;
         gap: 15px;
+        width: 100%;
       }
 
       .coletar {

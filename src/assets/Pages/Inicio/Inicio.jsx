@@ -31,7 +31,7 @@ const Inicio = () => {
                     onDrop={(e) => onDrop(e, 'colhidos')}
                     onDragOver={onDragOver}
                 >
-                    <h2>Colheita</h2>
+                    
                     {colhidos.map((planta, index) => (
                         <CardPantas
                             key={planta.id} // Use um identificador único

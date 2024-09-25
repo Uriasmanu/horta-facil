@@ -1,4 +1,5 @@
 import './_CardPantas.scss'
+import './_CardPantasMobile.scss'
 import legume from '../../../image/Greenery.svg'
 import PropTypes from 'prop-types';
 
