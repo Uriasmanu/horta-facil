@@ -6,13 +6,7 @@ const ColetarContext = createContext();
 
 // Provider para o contexto
 export const ColetarProvider = ({ children }) => {
-  const [items, setItems] = useState([ 
-    { id: 1, name: 'Planta A' },
-    { id: 2, name: 'Planta A' },
-    { id: 3, name: 'Planta A' },
-    { id: 4, name: 'Planta A' },
-    { id: 5, name: 'Planta A' },
-  ]);
+  const [items, setItems] = useState([ ]);
   const [colhidos, setColhidos] = useState([]);
 
 
