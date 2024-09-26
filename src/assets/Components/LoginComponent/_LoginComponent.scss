@@ -16,6 +16,7 @@
     border-radius: 5px;
     border: 2px solid var(--main-color);
     box-shadow: 4px 4px var(--main-color);
+    width: 300px;
   }
   
   .title {
@@ -57,6 +58,11 @@
   .login-with {
     display: flex;
     gap: 20px;
+
+    .erro-mensagem{
+      color: red;
+      font-weight: bold;
+    }
   }
   
   .button-log {
@@ -86,7 +92,7 @@
   }
   
   .button-confirm {
-    margin: 50px auto 0 auto;
+    margin: 20px auto 0 auto;
     width: 120px;
     height: 40px;
     border-radius: 5px;
