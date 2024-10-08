@@ -7,17 +7,25 @@ import Tarefas from '../../Components/Tarefas/Tarefas';
 import './_Inicio.scss';
 import './_InicioMobile.scss';
 import { useColeta } from '../../Context/DropDragContext';
+import FormRegistrar from '../../Components/FormRegistrar/FormRegistrar';
+import { useState } from 'react';
 
 
 const Inicio = () => {
     const { items, colhidos, onDragStart, onDrop, onDragOver } = useColeta();
+    const [isFormVisible,  setIsFormVisible] = useState(false);
+
+    const  handleToggleForm = () => {
+        setIsFormVisible(!isFormVisible)
+    }
+
 
     return (
         <div className="container-Inicio">
             
             
             <div className="registrar">
-                <BotaoRegistrar />
+                <BotaoRegistrar onClick={handleToggleForm}/>
             </div>
             <div className="secao agenda">
                 <div>
@@ -25,6 +33,7 @@ const Inicio = () => {
                     
                     <div className="colecao-tarefas">
                         <Tarefas />
+                        
                     </div>
                 </div>
                 
@@ -61,7 +70,9 @@ const Inicio = () => {
                     ))}
                 </div>
             </div>
-            
+            <div className={`overlay ${isFormVisible ? 'visible' : ''}`}>
+            <FormRegistrar/>
+            </div>
             <div className="contain-sidebarMobile">
                 <SideBarMobile />
             </div>
