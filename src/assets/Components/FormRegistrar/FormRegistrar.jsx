@@ -1,31 +1,18 @@
-import { useState } from 'react';
 import './_FormRegistrar.scss';
 import fecharJanelaImg from '../../../image/fecharJanela.png';
+import useRegistrarPlanta from '../../Hooks/useRegistrarPlanta';
+import Loader from '../Loader/Loader';
 
 const FormRegistrar = () => {
-    const [formData, setFormData] = useState({
-        nome: '',
-        dias1: '',
-        dias2: ''
-    });
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
-    };
-
-    const isFormValid = () => {
-        // Verifica se todos os campos estão preenchidos
-        return formData.nome !== '' && formData.dias1 !== '' && formData.dias2 !== '';
-    };
+  
+    const { formData, handleInputChange, isFormValid, handleSubmit, isSubmitting, errorMessage } = useRegistrarPlanta();
 
     return (
         <div className="container-FormRegistrar">
-            <form className="form">
-                <button className='buttonFechar'>
+            {isSubmitting && <Loader />} {/* Exibe o Loader enquanto está enviando o formulário */}
+
+            <form className="form" onSubmit={handleSubmit}>
+                <button className='buttonFechar' type="button">
                     <img src={fecharJanelaImg} alt="Fechar Janela" />
                 </button>
 
@@ -35,39 +22,34 @@ const FormRegistrar = () => {
                     <span>Plantas</span>
                 </div>
 
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+                <input
+                type="text"
+                placeholder="Nome"
+                name="nomePlanta" // Certifique-se de que o nome corresponda ao do estado
+                className="nome"
+                value={formData.nomePlanta}
+                onChange={handleInputChange}
+            />
+
+            <div className='dias'>
                 <input
                     type="text"
-                    placeholder="nome"
-                    name="nome"
-                    className="nome"
-                    value={formData.nome}
+                    placeholder="Dias para a colheita"
+                    name="diasParaColheita" // Certifique-se de que o nome corresponda ao do estado
+                    className="input"
+                    value={formData.diasParaColheita}
                     onChange={handleInputChange}
                 />
-
-                <div className='dias'>
-                    <input
-                        type="text"
-                        placeholder="dias"
-                        name="dias1"
-                        className="input"
-                        value={formData.dias1}
-                        onChange={handleInputChange}
-                    />
-                    <input
-                        type="text"
-                        placeholder="dia"
-                        name="dias2"
-                        className="input"
-                        value={formData.dias2}
-                        onChange={handleInputChange}
-                    />
-                </div>
+            </div>
 
                 <button
                     className="button-confirm"
-                    disabled={!isFormValid()} // Desabilita o botão se o formulário não for válido
+                    type="submit"
+                    disabled={!isFormValid() || isSubmitting}
                 >
-                    Plantar →
+                    {isSubmitting ? 'Registrando...' : 'Plantar →'}
                 </button>
             </form>
         </div>
