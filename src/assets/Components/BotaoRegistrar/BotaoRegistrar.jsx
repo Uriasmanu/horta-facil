@@ -1,16 +1,12 @@
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
 import './_BotaoRegistrar.scss'
 
-const BotaoRegistrar = ({onClick}) => {
+const BotaoRegistrar = ({ onClick }) => {
 
     return (
-        <div className="container-BotaoRegistrar">
-
-            <button onClick={onClick}>
-
-                REGISTRAR
-            </button>
-        </div>
+        <button onClick={onClick} className="container-BotaoRegistrar">
+            REGISTRAR
+        </button>
     )
 }
 
