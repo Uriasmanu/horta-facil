@@ -71,7 +71,7 @@ const Inicio = () => {
                 > {isLoading ? (
                     <div className="loading">Carregando...</div>
                 ) : (
-                    items.$values.map((planta, index) => (
+                    items.map((planta, index) => (
                         <CardPantas
                             key={planta.id}
                             data={planta}
