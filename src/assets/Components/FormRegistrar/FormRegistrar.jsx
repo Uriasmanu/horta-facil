@@ -10,7 +10,7 @@ const FormRegistrar = ({onClose}) => {
 
     return (
         <div className="container-FormRegistrar">
-            {isSubmitting && <Loader />} {/* Exibe o Loader enquanto está enviando o formulário */}
+            {isSubmitting || <Loader />} {/* Exibe o Loader enquanto está enviando o formulário */}
 
             <form className="form" onSubmit={handleSubmit}>
                 <button className='buttonFechar' type="button">

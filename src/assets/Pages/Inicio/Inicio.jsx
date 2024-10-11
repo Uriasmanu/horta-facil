@@ -12,14 +12,15 @@ import { useState } from 'react';
 
 
 const Inicio = () => {
-    const { items, colhidos, onDragStart, onDrop, onDragOver } = useColeta();
+    const { items, colhidos, isLoading, errorMessage, onDragStart, onDrop, onDragOver } = useColeta();
+
     const [isFormVisible, setIsFormVisible] = useState(false);
 
     const handleToggleForm = () => {
         setIsFormVisible(!isFormVisible)
     }
 
-    const closeForm = () =>{
+    const closeForm = () => {
         setIsFormVisible(false)
     }
 
@@ -46,15 +47,19 @@ const Inicio = () => {
                     onDrop={(e) => onDrop(e, 'colhidos')}
                     onDragOver={onDragOver}
                 >
-
-                    {colhidos.map((planta, index) => (
-                        <CardPantas
-                            key={planta.id} // Use um identificador único
-                            data={planta}
-                            index={index}
-                            onDragStart={(event) => onDragStart(event, planta)}
-                        />
-                    ))}
+                    {isLoading ? (
+                        <div className="loading">Carregando...</div>
+                    ) : (
+                        colhidos.map((planta, index) => (
+                            <CardPantas
+                                key={planta.id}
+                                data={planta}
+                                index={index}
+                                onDragStart={(event) => onDragStart(event, planta)}
+                            />
+                        ))
+                    )}
+                    {errorMessage && <div className="error-message">{errorMessage}</div>}
                 </div>
             </div>
             <div className="secao plantas">
@@ -63,15 +68,18 @@ const Inicio = () => {
                     className="colecao-cards"
                     onDrop={(e) => onDrop(e, 'items')}
                     onDragOver={onDragOver}
-                >
-                    {items.map((planta, index) => (
+                > {isLoading ? (
+                    <div className="loading">Carregando...</div>
+                ) : (
+                    items.$values.map((planta, index) => (
                         <CardPantas
-                            key={planta.id} // Use um identificador único
+                            key={planta.id}
                             data={planta}
                             index={index}
                             onDragStart={(event) => onDragStart(event, planta)}
                         />
-                    ))}
+                    ))
+                )}
                 </div>
             </div>
             <div className={`overlay ${isFormVisible ? 'visible' : ''}`}>
