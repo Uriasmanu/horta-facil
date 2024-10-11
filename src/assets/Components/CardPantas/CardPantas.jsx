@@ -18,9 +18,9 @@ const CardPantas = ({ data, onDragStart }) => {
                 <div className="img">
                     <img src={legume} alt="" />
                 </div>
-                <span> {data.nome}</span>
-                <p className="job"> 21/09/24</p>
-                <button> Click
+                <span> {data.nomePlanta}</span>
+                <p className="job"> {data.diaPlantioFormatado} </p>
+                <button> {data.diasParaColheita}
                 </button>
             </div>
         </div>
