@@ -13,36 +13,40 @@ import { useState } from 'react';
 
 const Inicio = () => {
     const { items, colhidos, onDragStart, onDrop, onDragOver } = useColeta();
-    const [isFormVisible,  setIsFormVisible] = useState(false);
+    const [isFormVisible, setIsFormVisible] = useState(false);
 
-    const  handleToggleForm = () => {
+    const handleToggleForm = () => {
         setIsFormVisible(!isFormVisible)
+    }
+
+    const closeForm = () =>{
+        setIsFormVisible(false)
     }
 
 
     return (
         <div className="container-Inicio">
-            
-            
+
+
             <div className="registrar">
-                <BotaoRegistrar onClick={handleToggleForm}/>
+                <BotaoRegistrar onClick={handleToggleForm} />
             </div>
             <div className="secao agenda">
                 <div>
                     <h2>Agenda de Tarefas</h2>
-                    
+
                     <div className="colecao-tarefas">
                         <Tarefas />
-                        
+
                     </div>
                 </div>
-                
+
                 <div
                     className="coletar"
                     onDrop={(e) => onDrop(e, 'colhidos')}
                     onDragOver={onDragOver}
                 >
-                    
+
                     {colhidos.map((planta, index) => (
                         <CardPantas
                             key={planta.id} // Use um identificador único
@@ -71,7 +75,7 @@ const Inicio = () => {
                 </div>
             </div>
             <div className={`overlay ${isFormVisible ? 'visible' : ''}`}>
-            <FormRegistrar/>
+                <FormRegistrar onClose={closeForm} />
             </div>
             <div className="contain-sidebarMobile">
                 <SideBarMobile />

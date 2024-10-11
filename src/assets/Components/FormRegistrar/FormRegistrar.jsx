@@ -1,9 +1,10 @@
 import './_FormRegistrar.scss';
 import fecharJanelaImg from '../../../image/fecharJanela.png';
 import useRegistrarPlanta from '../../Hooks/useRegistrarPlanta';
+import PropTypes from 'prop-types';
 import Loader from '../Loader/Loader';
 
-const FormRegistrar = () => {
+const FormRegistrar = ({onClose}) => {
   
     const { formData, handleInputChange, isFormValid, handleSubmit, isSubmitting, errorMessage } = useRegistrarPlanta();
 
@@ -13,7 +14,7 @@ const FormRegistrar = () => {
 
             <form className="form" onSubmit={handleSubmit}>
                 <button className='buttonFechar' type="button">
-                    <img src={fecharJanelaImg} alt="Fechar Janela" />
+                    <img src={fecharJanelaImg} alt="Fechar Janela" onClick={onClose}/>
                 </button>
 
                 <div className="title">
@@ -54,6 +55,11 @@ const FormRegistrar = () => {
             </form>
         </div>
     );
+};
+
+// Definindo os prop types
+FormRegistrar.propTypes = {
+    onClose: PropTypes.func.isRequired, // onClose precisa ser uma função e é obrigatório
 };
 
 export default FormRegistrar;
