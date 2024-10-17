@@ -4,13 +4,13 @@
     box-sizing: border-box;
     height: 100vh;
     background: #6fa77b;
-    justify-content: space-around;
+    justify-content: flex-start;
     flex-direction: column;
-    
-    
+    gap: 30px;
+    padding: 5% 0;
 
     .secao {
-      padding: 5%;
+      padding: 0 5%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -42,7 +42,7 @@
     .agenda {
       display: flex;
       flex-direction: column;
-      gap: 5%;
+      gap: 30px;
 
       .colecao-tarefas {
         margin-top: 5%;

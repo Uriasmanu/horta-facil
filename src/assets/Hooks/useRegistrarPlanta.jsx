@@ -39,6 +39,7 @@ const useRegistrarPlanta = () => {
             const response = await axios.post('https://localhost:7193/api/Planta/plantas', {
                 nomePlanta: formData.nomePlanta,
                 diasParaColheita: parseInt(formData.diasParaColheita, 10), // Converte para inteiro
+
             });
     
             console.log('Planta registrada com sucesso:', response.data);

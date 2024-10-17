@@ -8,7 +8,7 @@ const BotaoColheita = ({ onClick }) => {
     return (
         <div className="botao-colheita">
 
-            <button onClick={onClick}>Plant based
+            <button onClick={onClick}>Colher
                 <div className="icon-1">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" version="1.1"
                         style={{

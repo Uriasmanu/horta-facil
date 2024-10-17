@@ -53,7 +53,7 @@ const Inicio = () => {
                 <BotaoRegistrar onClick={handleToggleForm} />
             </div>
             <div className="secao agenda">
-                <div>
+                <div className='div-secao-agenda'>
                     <h2>Agenda de Tarefas</h2>
 
                     <div className="colecao-tarefas">
