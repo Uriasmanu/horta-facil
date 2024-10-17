@@ -11,6 +11,7 @@ export const ColetarProvider = ({ children }) => {
   const [colhidos, setColhidos] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(true); // Adicionando estado de carregamento
+  const [idColhido, setIdColhido] = useState(null);
 
 
   // Função para buscar plantas do backend
@@ -51,19 +52,12 @@ export const ColetarProvider = ({ children }) => {
       setColhidos((prevColhidos) => {
         const isAlreadyInColhidos = prevColhidos.some(colhido => colhido.id === planta.id);
         if (!isAlreadyInColhidos) {
+          setIdColhido(planta.id); // Armazena o ID da planta "colhida"
+          console.log("ID colhido:", planta.id); // Exibe no console o ID
           return [...prevColhidos, planta];
         }
         return prevColhidos; // Não adiciona duplicata
       });
-
-       // Realizar a chamada DELETE para remover a planta da API
-       try {
-        await axios.delete(`https://localhost:7193/api/Planta/plantas/${planta.id}`);
-        console.log(`Planta ${planta.id} coletada e removida com sucesso.`);
-    } catch (error) {
-        console.error(`Erro ao remover planta ${planta.id}:`, error);
-    }
-
 
     } else if (target === 'items') {
       // Remover da lista de colhidos e adicionar de volta para items
@@ -87,7 +81,7 @@ export const ColetarProvider = ({ children }) => {
 
 
   return (
-    <ColetarContext.Provider value={{ items, colhidos, onDragStart, onDrop, onDragOver, isLoading, errorMessage }}>
+    <ColetarContext.Provider value={{ items, colhidos, onDragStart, onDrop, onDragOver, isLoading, errorMessage, idColhido, setIdColhido }}>
       {children}
     </ColetarContext.Provider>
   );

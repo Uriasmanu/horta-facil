@@ -9,13 +9,16 @@ import './_InicioMobile.scss';
 import { useColeta } from '../../Context/DropDragContext';
 import FormRegistrar from '../../Components/FormRegistrar/FormRegistrar';
 import { useState } from 'react';
+import axios from 'axios';
 import BotaoColheita from '../../Components/BotaoColheita/BotaoColheita';
 
 
+
 const Inicio = () => {
-    const { items, colhidos, isLoading, errorMessage, onDragStart, onDrop, onDragOver } = useColeta();
+    const { items, colhidos, isLoading, errorMessage, onDragStart, onDrop, onDragOver, idColhido, setIdColhido } = useColeta();
 
     const [isFormVisible, setIsFormVisible] = useState(false);
+
 
     const handleToggleForm = () => {
         setIsFormVisible(!isFormVisible)
@@ -25,6 +28,22 @@ const Inicio = () => {
         setIsFormVisible(false)
     }
 
+
+    // Realizar a chamada DELETE para remover a planta da API
+    const handleColheita = async () => {
+        if (!idColhido) { // Corrigido aqui para usar idColhido
+            console.error("Nenhuma planta foi selecionada.");
+            return;
+        }
+
+        try {
+            await axios.delete(`https://localhost:7193/api/Planta/plantas/${idColhido}`);
+            console.log(`Planta ${idColhido} coletada e removida com sucesso.`);
+            window.location.reload();
+        } catch (error) {
+            console.error(`Erro ao remover planta ${idColhido}:`, error);
+        }
+    };
 
     return (
         <div className="container-Inicio">
@@ -52,18 +71,23 @@ const Inicio = () => {
                         <div className="loading">Carregando...</div>
                     ) : (
                         colhidos.map((planta, index) => (
-                            <CardPantas
-                                key={planta.id}
-                                data={planta}
-                                index={index}
-                                onDragStart={(event) => onDragStart(event, planta)}
-                            />
+                            <div key={planta.id}>
+                                <CardPantas
+                                    data={planta}
+                                    index={index}
+                                    onDragStart={(event) => onDragStart(event, planta)}
+
+                                />
+
+                            </div>
                         ))
                     )}
+
                     {errorMessage && <div className="error-message">{errorMessage}</div>}
                 </div>
 
-                <BotaoColheita/>
+                <BotaoColheita onClick={handleColheita} />
+
             </div>
             <div className="secao plantas">
                 <h2>Plantas cadastradas</h2>
@@ -80,10 +104,12 @@ const Inicio = () => {
                             data={planta}
                             index={index}
                             onDragStart={(event) => onDragStart(event, planta)}
+
                         />
                     ))
                 )}
                 </div>
+
             </div>
             <div className={`overlay ${isFormVisible ? 'visible' : ''}`}>
                 <FormRegistrar onClose={closeForm} />

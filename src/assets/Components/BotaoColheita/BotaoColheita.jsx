@@ -1,12 +1,14 @@
+
 import './_BotaoColheita.scss'
+import PropTypes from 'prop-types'; 
 
-const BotaoColheita = () => {
-
-
+const BotaoColheita = ({ onClick }) => {
+   
+   
     return (
         <div className="botao-colheita">
 
-            <button>Plant based
+            <button onClick={onClick}>Plant based
                 <div className="icon-1">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" version="1.1"
                         style={{
@@ -58,4 +60,7 @@ const BotaoColheita = () => {
     )
 }
 
+BotaoColheita.propTypes = {
+    onClick: PropTypes.string.isRequired, // Ou PropTypes.number, dependendo do tipo de plantaId que você espera
+};
 export default BotaoColheita;
