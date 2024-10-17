@@ -29,6 +29,7 @@
       height: 90%;
       overflow-y: auto;
       justify-content: center;
+      cursor: pointer;
 
       &::-webkit-scrollbar {
         display: none; /* Oculta a barra de rolagem */

@@ -1,6 +1,8 @@
 @media (max-width: 600px) {
   .container-CardPantas {
     /* From Uiverse.io by alexmaracinaru */
+    cursor: pointer;
+
     .card {
       width: 150px;
       height: 200px;
@@ -8,6 +10,7 @@
       border-radius: 15px;
       box-shadow: 1px 5px 60px 0px #100a886b;
       color: #000;
+      cursor: pointer;
     }
 
     .card .card-border-top {

@@ -9,6 +9,7 @@ import './_InicioMobile.scss';
 import { useColeta } from '../../Context/DropDragContext';
 import FormRegistrar from '../../Components/FormRegistrar/FormRegistrar';
 import { useState } from 'react';
+import BotaoColheita from '../../Components/BotaoColheita/BotaoColheita';
 
 
 const Inicio = () => {
@@ -61,6 +62,8 @@ const Inicio = () => {
                     )}
                     {errorMessage && <div className="error-message">{errorMessage}</div>}
                 </div>
+
+                <BotaoColheita/>
             </div>
             <div className="secao plantas">
                 <h2>Plantas cadastradas</h2>
