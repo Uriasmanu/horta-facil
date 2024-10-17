@@ -15,7 +15,7 @@ import BotaoColheita from '../../Components/BotaoColheita/BotaoColheita';
 
 
 const Inicio = () => {
-    const { items, colhidos, isLoading, errorMessage, onDragStart, onDrop, onDragOver, idColhido, setIdColhido } = useColeta();
+    const { items, colhidos, isLoading, errorMessage, onDragStart, onDrop, onDragOver, idColhido } = useColeta();
 
     const [isFormVisible, setIsFormVisible] = useState(false);
 
