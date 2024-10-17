@@ -1,5 +1,6 @@
 
 import './_BotaoColheita.scss'
+import './_BotaoColheitaMobile.scss'
 import PropTypes from 'prop-types'; 
 
 const BotaoColheita = ({ onClick }) => {
