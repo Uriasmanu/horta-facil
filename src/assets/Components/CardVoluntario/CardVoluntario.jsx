@@ -2,7 +2,8 @@ import './_CardVoluntario.scss'
 import avatar from '../../../image/avatar.png'
 
 
-const CardVoluntario = (nomeVoluntario) => {
+const CardVoluntario = ({ nome, id, onDelete }) => {
+    
     return (
         <div className="container-voluntario">
 
@@ -11,11 +12,11 @@ const CardVoluntario = (nomeVoluntario) => {
                 <div className="card__avatar">
                     <img src={avatar} alt="" />
                 </div>
-                <div className="card__title">{nomeVoluntario}</div>
+                <div className="card__title">{nome}</div>
 
                 <div className="card__wrapper">
                     <button className="card__btn">Editar</button>
-                    <button className="card__btn card__btn-solid">Excluir</button>
+                    <button className="card__btn card__btn-solid" onClick={() => onDelete(id)}>Excluir</button>
                 </div>
             </div>
         </div>

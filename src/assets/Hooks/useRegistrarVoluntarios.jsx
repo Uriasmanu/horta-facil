@@ -20,6 +20,7 @@ const useRegistrarVoluntarios = () => {
             const response = await axios.post('https://localhost:7193/api/voluntarios', formData);
             console.log('Voluntário adicionado:', response.data);
             setFormData({ nome: '' }); // Reseta o formulário
+            window.location.reload();
 
         } catch (error) {
             const serverMessage = error.response?.data?.message || 'Erro ao registrar o voluntário.';
