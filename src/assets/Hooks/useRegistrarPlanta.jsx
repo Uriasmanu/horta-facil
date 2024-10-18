@@ -47,6 +47,8 @@ const useRegistrarPlanta = () => {
                 nomePlanta: '', // Limpa o campo após o envio
                 diasParaColheita: '' // Limpa o campo após o envio
             });
+
+            window.location.reload();
         } catch (error) {
             console.error('Erro ao registrar planta:', error);
             setErrorMessage('Erro ao registrar a planta. Tente novamente.');

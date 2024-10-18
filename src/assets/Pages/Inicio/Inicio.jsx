@@ -21,7 +21,8 @@ const Inicio = () => {
 
 
     const handleToggleForm = () => {
-        setIsFormVisible(!isFormVisible)
+        setIsFormVisible(!isFormVisible);
+        
     }
 
     const closeForm = () => {
