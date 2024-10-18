@@ -3,8 +3,8 @@ import axios from 'axios';
 
 const useRegistrarPlanta = () => {
     const [formData, setFormData] = useState({
-        nomePlanta: '', // Corrigido para "nomePlanta" conforme o corpo esperado da requisição
-        diasParaColheita: '', // Corrigido para "diasParaColheita" conforme o corpo esperado da requisição
+        nomePlanta: '',
+        diasParaColheita: '',
     });
 
     const [isSubmitting, setIsSubmitting] = useState(false);
