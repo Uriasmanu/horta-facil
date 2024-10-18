@@ -18,6 +18,25 @@ O **Horta Fácil** é uma plataforma simples voltada para a organização de peq
 - **Banco de Dados**: SQLite ou outro banco de dados leve compatível com ASP.NET.
 - **Hospedagem**: Vercel para disponibilizar o sistema online.
 
+## Configuração do Projeto
+- **Backend**:
+O backend do sistema deve ser executado na porta 7193. Certifique-se de que o servidor está configurado para rodar nesta porta e que as APIs estão acessíveis corretamente.
+
+- **Frontend**:
+Para rodar o frontend, utilize o seguinte comando:
+
+```
+npm run dev
+```
+
+- O servidor de desenvolvimento do frontend será executado automaticamente na porta 5173.
+
+- **Credenciais de Acesso**:
+Para realizar o login no sistema, utilize as seguintes credenciais:
+
+- **Usuário**: admim
+- **Senha**: admim
+
 ## Objetivos de Aprendizagem
 1. **Especificação e Implementação**: Desenvolver soluções simples para gerenciar as atividades de uma horta comunitária.
 2. **Modelagem de Problemas Práticos**: Transformar problemas reais em soluções tecnológicas de fácil acesso para a comunidade.
