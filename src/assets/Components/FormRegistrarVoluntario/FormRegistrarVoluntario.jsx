@@ -1,26 +1,32 @@
 import './_FormRegistrarVoluntario.scss';
 import fecharJanelaImg from '../../../image/fecharJanela.png';
-import useRegistrarPlanta from '../../Hooks/useRegistrarPlanta';
 import PropTypes from 'prop-types';
 import Loader from '../Loader/Loader';
+import useRegistrarVoluntarios from '../../Hooks/useRegistrarVoluntarios';
 
 const FormRegistrarVoluntario = ({ onClose }) => {
-
-    const { formData, handleInputChange, isFormValid, handleSubmit, isSubmitting, errorMessage } = useRegistrarPlanta();
+    const {
+        formData,
+        isSubmitting,
+        errorMessage,
+        handleInputChange,
+        handleSubmit,
+        isFormValid,
+    } = useRegistrarVoluntarios();
 
     return (
         <div className="container-FormRegistrarVoluntario">
-            {isSubmitting || <Loader />} {/* Exibe o Loader enquanto está enviando o formulário */}
+            {isSubmitting && <Loader />} {/* Correção do Loader */}
 
             <form className="form" onSubmit={handleSubmit}>
-                <button className='buttonFechar' type="button">
-                    <img src={fecharJanelaImg} alt="Fechar Janela" onClick={onClose} />
+                <button className='buttonFechar' type="button" onClick={onClose}>
+                    <img src={fecharJanelaImg} alt="Fechar Janela" />
                 </button>
 
                 <div className="title">
                     Registrar
                     <br />
-                    <span>Voluntario</span>
+                    <span>Voluntário</span>
                 </div>
 
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
@@ -28,9 +34,9 @@ const FormRegistrarVoluntario = ({ onClose }) => {
                 <input
                     type="text"
                     placeholder="Nome"
-                    name="nomePlanta" // Certifique-se de que o nome corresponda ao do estado
+                    name="nome" // Certifique-se de que o nome corresponda ao do estado
                     className="nome"
-                    value={formData.nomePlanta}
+                    value={formData.nome} // Acessa o valor correto
                     onChange={handleInputChange}
                 />
                 <button
@@ -38,7 +44,7 @@ const FormRegistrarVoluntario = ({ onClose }) => {
                     type="submit"
                     disabled={!isFormValid() || isSubmitting}
                 >
-                    {isSubmitting ? 'Registrando...' : 'Plantar →'}
+                    {isSubmitting ? 'Registrando...' : 'Registrar →'}
                 </button>
             </form>
         </div>
