@@ -14,6 +14,17 @@ const Tarefas = () => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 
+    const handleDeleteTarefa = async (id) => {
+        try {
+            await axios.delete(`https://localhost:7193/api/Tarefas/${id}`);
+            console.log(`Tarefa com ID ${id} deletada com sucesso.`);
+           window.location.reload();
+        } catch (error) {
+            console.error('Erro ao deletar tarefa:', error);
+            setError('Erro ao deletar a tarefa.');
+        }
+    }
+
     const handleToggleForm = () => {
         setIsFormVisible(!isFormVisible);
     };
@@ -76,6 +87,7 @@ const Tarefas = () => {
                                         data={tarefa.dataCriacao} // Usando dataCriacao da resposta
                                         status={tarefa.status} // Adicionando status
                                         voluntario={tarefa.idVoluntario} // Adicionando voluntario
+                                        onDelete={() => handleDeleteTarefa(tarefa.id)}
                                     />
                                 ))
                             ) : (

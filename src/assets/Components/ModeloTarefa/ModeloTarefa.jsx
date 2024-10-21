@@ -3,7 +3,9 @@ import './_ModeloTarefa.scss';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-const ModeloTarefa = ({ status, nome, data, voluntario }) => {
+import apagar from '../../../image/apagar.png'
+
+const ModeloTarefa = ({ status, nome, data, voluntario, onDelete }) => {
     const [nomeVoluntario, setNomeVoluntario] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
@@ -25,6 +27,8 @@ const ModeloTarefa = ({ status, nome, data, voluntario }) => {
                 return ''; // Isso nunca deve ocorrer devido à verificação anterior
         }
     };
+
+   
 
     useEffect(() => {
         const fetchVoluntario = async () => {
@@ -76,6 +80,11 @@ const ModeloTarefa = ({ status, nome, data, voluntario }) => {
                     <div className="info__title">{formatarData(data)}</div>
                     <div className="info__title voluntario">{nomeVoluntario || ""}</div>
                 </div>
+
+                <button className='apagar' onClick={onDelete}>
+                    <img src={apagar} alt="icone de apagar" />
+                </button>
+                
             </div>
         </div>
     );
@@ -87,6 +96,7 @@ ModeloTarefa.propTypes = {
     nome: PropTypes.string.isRequired,
     data: PropTypes.string.isRequired,
     voluntario: PropTypes.string,
+    onDelete: PropTypes.func.isRequired,
 };
 
 export default ModeloTarefa

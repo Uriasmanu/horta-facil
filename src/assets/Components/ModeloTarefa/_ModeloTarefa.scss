@@ -13,6 +13,7 @@
     justify-content: start;
     border-radius: 8px;
     box-shadow: 0px 0px 5px -3px #111;
+    gap: 10px;
 
     .textos{
       display: flex;
@@ -25,18 +26,23 @@
       width: 40%;
       text-align: end;
     }
+
+    .apagar{
+      background: none;
+      border: none;
+    }
   }
 
   .info.Pendente {
-    background: rgb(248, 139, 139);
+    background: rgb(255, 97, 97);
   }
 
   .info.Progresso {
-    background: rgb(248, 246, 139);
+    background: rgb(230, 143, 12);
   }
 
   .info.Finalizado {
-    background: rgb(183, 248, 139);
+    background: rgb(54, 90, 30);
   }
 
   .info__icon {
@@ -51,7 +57,7 @@
   }
 
   .info__title {
-    font-weight: 500;
+    font-weight: bold;
     font-size: 14px;
     color: #fff;
     width: 30%;
