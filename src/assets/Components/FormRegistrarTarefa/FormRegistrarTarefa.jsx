@@ -3,9 +3,15 @@ import fecharJanelaImg from '../../../image/fecharJanela.png';
 import PropTypes from 'prop-types';
 import Loader from '../Loader/Loader';
 import useRegistrarTarefa from '../../Hooks/useRegistrarTarefa';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 
 const FormRegistrarTarefa = ({ onClose }) => {
+    const [voluntarios, setVoluntarios] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
     const {
         formData,
         isSubmitting,
@@ -14,6 +20,31 @@ const FormRegistrarTarefa = ({ onClose }) => {
         handleSubmit,
         isFormValid,
     } = useRegistrarTarefa();
+
+
+    useEffect(() => {
+        const fetchVoluntarios = async () => {
+            try {
+                const response = await axios.get('https://localhost:7193/api/Voluntarios');
+                // Verifica se a resposta tem a estrutura esperada
+                if (response.data && response.data.$values) {
+                    setVoluntarios(response.data.$values);
+
+
+                } else {
+                    setError('Formato de dados inesperado.'); // Mensagem de erro se a estrutura não estiver correta
+                }
+
+            } catch (error) {
+                console.error('Erro ao buscar voluntários:', error);
+                setError('Não foi possível carregar os voluntários.'); // Mensagem de erro
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchVoluntarios();
+    }, []);
 
     return (
         <div className="container-FormRegistrarTarefa">
@@ -27,7 +58,7 @@ const FormRegistrarTarefa = ({ onClose }) => {
                 <div className="title">
                     Registrar
                     <br />
-                    <span>Voluntário</span>
+                    <span>Tarefa</span>
                 </div>
 
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
@@ -40,6 +71,22 @@ const FormRegistrarTarefa = ({ onClose }) => {
                     value={formData.nome} // Acessa o valor correto
                     onChange={handleInputChange}
                 />
+                <input
+                    type="text"
+                    placeholder="Descricao"
+                    name="descricao" // Certifique-se de que o descricao corresponda ao do estado
+                    className="nome"
+                    value={formData.descricao} // Acessa o valor correto
+                    onChange={handleInputChange}
+                />
+
+                <label htmlFor="opcoes">Escolha um voluntario</label>
+                <select id="opcoes" name="opcoes">
+                    <option value="opcao1"> </option>
+                    <option value="opcao2">Opção 2</option>
+                    <option value="opcao3">Opção 3</option>
+                </select>
+
                 <button
                     className="button-confirm"
                     type="submit"

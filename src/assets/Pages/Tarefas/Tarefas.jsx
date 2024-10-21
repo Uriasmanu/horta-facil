@@ -40,21 +40,7 @@ const Tarefas = () => {
 
                     <div className='listar-tarefas'>
                         <ModeloTarefa />
-                        <ModeloTarefa />
-                        <ModeloTarefa />
-                        <ModeloTarefa />
-                        <ModeloTarefa />
-                        <ModeloTarefa />
-                        <ModeloTarefa />
-                        <ModeloTarefa />
-                        <ModeloTarefa />
-                        <ModeloTarefa />
-                        <ModeloTarefa />
-                        <ModeloTarefa />
-                        <ModeloTarefa />
-                        <ModeloTarefa />
-                        <ModeloTarefa />
-                        <ModeloTarefa />
+                       
                     </div>
                 </div>
 

@@ -1,4 +1,4 @@
-.container-FormRegistrarTarefa  {
+.container-FormRegistrarTarefa {
   /* From Uiverse.io by andrew-demchenk0 */
   .form {
     --input-focus: #2d8cf0;
@@ -23,16 +23,26 @@
       background: none;
       border: none;
 
-
       img {
         width: 30px;
         height: 30px;
       }
     }
 
-    .error-message{
+    .error-message {
       color: red;
       font-weight: bold;
+    }
+
+    label {
+      color: var(--font-color-sub);
+      font-weight: 600;
+      font-size: 17px;
+    }
+
+    select {
+      padding: 10px;
+      width: 50%;
     }
   }
 
