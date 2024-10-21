@@ -1,5 +1,6 @@
 import './_CardVoluntario.scss'
 import avatar from '../../../image/avatar.png'
+import PropTypes from 'prop-types';
 
 
 const CardVoluntario = ({ nome, id, onDelete }) => {
@@ -23,4 +24,9 @@ const CardVoluntario = ({ nome, id, onDelete }) => {
     )
 }
 
+CardVoluntario.propTypes = {
+    nome: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    onDelete: PropTypes.func.isRequired,
+};
 export default CardVoluntario;
