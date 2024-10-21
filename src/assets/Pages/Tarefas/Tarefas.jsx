@@ -5,6 +5,8 @@ import SideBar from '../../Components/SideBar/SideBar';
 import SideBarMobile from '../../Components/SideBarMobile/SideBarMobile';
 import './_Tarefas.scss'
 import FormRegistrarTarefa from '../../Components/FormRegistrarTarefa/FormRegistrarTarefa';
+import ModeloTarefa from '../../Components/ModeloTarefa/ModeloTarefa';
+import CardDescricaoTarefa from '../../Components/CardDescricaoTarefa/CardDescricaoTarefa';
 
 const Tarefas = () => {
     const [isFormVisible, setIsFormVisible] = useState(false);
@@ -29,6 +31,31 @@ const Tarefas = () => {
             <div className="main">
                 <div className="BotaoRegistrar">
                     <BotaoRegistrar onClick={handleToggleForm} />
+                </div>
+                
+                <CardDescricaoTarefa />
+
+                <div className="contain-tarefas">
+                    <h2>Agenda de Tarefas</h2>
+
+                    <div className='listar-tarefas'>
+                        <ModeloTarefa />
+                        <ModeloTarefa />
+                        <ModeloTarefa />
+                        <ModeloTarefa />
+                        <ModeloTarefa />
+                        <ModeloTarefa />
+                        <ModeloTarefa />
+                        <ModeloTarefa />
+                        <ModeloTarefa />
+                        <ModeloTarefa />
+                        <ModeloTarefa />
+                        <ModeloTarefa />
+                        <ModeloTarefa />
+                        <ModeloTarefa />
+                        <ModeloTarefa />
+                        <ModeloTarefa />
+                    </div>
                 </div>
 
 
