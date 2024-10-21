@@ -6,15 +6,14 @@ import useRegistrarTarefa from '../../Hooks/useRegistrarTarefa';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-
 const FormRegistrarTarefa = ({ onClose }) => {
     const [voluntario, setVoluntario] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [FormDataTarefa, setFormDataTarefa] = useState({});
 
     const {
         formData,
+        setFormData,
         isSubmitting,
         errorMessage,
         handleInputChangeTarefa,
@@ -22,37 +21,18 @@ const FormRegistrarTarefa = ({ onClose }) => {
         isFormValid,
     } = useRegistrarTarefa();
 
-    
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-    
-        if (name === 'voluntario') {
-            console.log(`ID do voluntário selecionado: ${value}`);  // Exibe o ID no console
-        }
-    
-        setFormDataTarefa({
-            ...formData,
-            [name]: value,  // Atualiza o valor corretamente, seja para 'voluntario' ou outros campos
-        });
-    };
-    
-
     useEffect(() => {
         const fetchVoluntarios = async () => {
             try {
                 const response = await axios.get('https://localhost:7193/api/Voluntarios');
-                // Verifica se a resposta tem a estrutura esperada
                 if (response.data && response.data.$values) {
                     setVoluntario(response.data.$values);
-
-
                 } else {
-                    setError('Formato de dados inesperado.'); // Mensagem de erro se a estrutura não estiver correta
+                    setError('Formato de dados inesperado.');
                 }
-
             } catch (error) {
                 console.error('Erro ao buscar voluntários:', error);
-                setError('Não foi possível carregar os voluntários.'); // Mensagem de erro
+                setError('Não foi possível carregar os voluntários.');
             } finally {
                 setLoading(false);
             }
@@ -61,9 +41,21 @@ const FormRegistrarTarefa = ({ onClose }) => {
         fetchVoluntarios();
     }, []);
 
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        handleInputChangeTarefa(e); // Atualiza o estado no hook
+    
+        if (name === 'idVoluntario') {
+            // Se a opção "Nenhum" for escolhida, define como null
+            const selectedValue = value === '' ? null : value;
+            setFormData((prev) => ({ ...prev, idVoluntario: selectedValue }));
+            console.log(`ID do voluntário selecionado: ${selectedValue}`);
+        }
+    };
+
     return (
         <div className="container-FormRegistrarTarefa">
-            {isSubmitting && <Loader />} {/* Correção do Loader */}
+            {isSubmitting && <Loader />}
 
             <form className="form" onSubmit={handleSubmit}>
                 <button className='buttonFechar' type="button" onClick={onClose}>
@@ -81,31 +73,29 @@ const FormRegistrarTarefa = ({ onClose }) => {
                 <input
                     type="text"
                     placeholder="Nome"
-                    name="nome" // Certifique-se de que o nome corresponda ao do estado
+                    name="nome"
                     className="nome"
-                    value={formData.nome} // Acessa o valor correto
+                    value={formData.nome}
                     onChange={handleInputChange}
                 />
-                <input
-                    type="text"
+                <textarea
+                    
                     placeholder="Descricao"
-                    name="descricao" // Certifique-se de que o descricao corresponda ao do estado
+                    name="descricao"
                     className="nome"
-                    value={formData.descricao} // Acessa o valor correto
+                    value={formData.descricao}
                     onChange={handleInputChange}
                 />
 
                 <label htmlFor="voluntario">Escolha um voluntário</label>
-                <select id="voluntario" name="voluntario" value={formData.voluntario} onChange={handleInputChange}>
-                    <option value="">Nenhum</option> {/* Opção vazia */}
+                <select id="voluntario" name="idVoluntario" value={formData.idVoluntario} onChange={handleInputChange}>
+                    <option value="">Nenhum</option>
                     {voluntario.map((voluntario) => (
                         <option key={voluntario.id} value={voluntario.id}>
                             {voluntario.nome}
                         </option>
                     ))}
                 </select>
-
-
 
                 <button
                     className="button-confirm"
@@ -121,7 +111,7 @@ const FormRegistrarTarefa = ({ onClose }) => {
 
 // Definindo os prop types
 FormRegistrarTarefa.propTypes = {
-    onClose: PropTypes.func.isRequired, // onClose precisa ser uma função e é obrigatório
+    onClose: PropTypes.func.isRequired,
 };
 
 export default FormRegistrarTarefa;

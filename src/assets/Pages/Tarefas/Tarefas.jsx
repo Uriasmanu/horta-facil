@@ -27,7 +27,6 @@ const Tarefas = () => {
             try {
                 setLoading(true);
                 const response = await axios.get('https://localhost:7193/api/Tarefas');
-                console.log('Resposta da API:', response.data); // Adicionando log aqui
 
                 if (response.data && response.data.$values) {
                     setTarefas(response.data.$values);

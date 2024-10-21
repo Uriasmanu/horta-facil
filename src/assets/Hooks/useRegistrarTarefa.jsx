@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 
 const useRegistrarTarefa = () => {
-    const [formData, setFormData] = useState({ nome: '' }); // Ajustado
+    const [formData, setFormData] = useState({ nome: '', descricao: '', idVoluntario: '' }); // Adicionado descricao e idVoluntario
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -18,12 +18,11 @@ const useRegistrarTarefa = () => {
 
         try {
             const response = await axios.post('https://localhost:7193/api/tarefas', formData);
-            console.log('tarefas adicionado:', response.data);
-            setFormData({ nome: '' }); // Reseta o formulário
+            console.log('Tarefa adicionada:', response.data);
+            setFormData({ nome: '', descricao: '', idVoluntario: '' }); // Reseta o formulário
             window.location.reload();
-
         } catch (error) {
-            const serverMessage = error.response?.data?.message || 'Erro ao registrar o tarefas.';
+            const serverMessage = error.response?.data?.message || 'Erro ao registrar a tarefa.';
             setErrorMessage(serverMessage);
         } finally {
             setIsSubmitting(false);
@@ -31,18 +30,18 @@ const useRegistrarTarefa = () => {
     };
 
     const isFormValid = () => {
-        return formData.nome.trim() !== '';
+        return formData.nome.trim() !== '' && formData.descricao.trim() !== '' && formData.idVoluntario; // Verifica todos os campos
     };
 
     return {
         formData,
+        setFormData,
         isSubmitting,
         errorMessage,
         handleInputChangeTarefa,
         handleSubmit,
         isFormValid,
     };
-
 };
 
 export default useRegistrarTarefa;

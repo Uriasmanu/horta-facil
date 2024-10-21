@@ -62,9 +62,5 @@ ModeloTarefa.propTypes = {
     voluntario: PropTypes.string,
 };
 
-// Definindo valores padrão para as props
-ModeloTarefa.defaultProps = {
-    voluntario: null, // ou outra string padrão se preferir
-};
 
 export default ModeloTarefa;
