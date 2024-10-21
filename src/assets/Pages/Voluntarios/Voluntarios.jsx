@@ -3,9 +3,11 @@ import BotaoRegistrar from '../../Components/BotaoRegistrar/BotaoRegistrar';
 import FormRegistrarVoluntario from '../../Components/FormRegistrarVoluntario/FormRegistrarVoluntario';
 import SideBar from '../../Components/SideBar/SideBar';
 import SideBarMobile from '../../Components/SideBarMobile/SideBarMobile';
-import './_Voluntarios.scss';
 import CardVoluntario from '../../Components/CardVoluntario/CardVoluntario';
 import axios from 'axios';
+import './_Voluntarios.scss';
+import './_VoluntariosMobile.scss';
+
 
 const Voluntarios = () => {
     const [isFormVisible, setIsFormVisible] = useState(false);
