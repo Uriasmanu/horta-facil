@@ -59,5 +59,6 @@ CardVoluntario.propTypes = {
     nome: PropTypes.string.isRequired,
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired, // Aceita tanto string quanto número
     onDelete: PropTypes.func.isRequired,
+    onUpdate: PropTypes.func.isRequired,
 };
 export default CardVoluntario;

@@ -1,4 +1,33 @@
 .container-Tarefas{
     display: flex;
     box-sizing: border-box;
+
+    .main {
+      width: 100%;
+      height: 100vh;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row-reverse;
+      margin: 2%;
+  
+        .overlay {
+          position: fixed;
+          bottom: -100%; /* Começa fora da tela */
+          left: 0;
+          right: 0;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: all 0.5s ease-in-out;
+          z-index: -1; /* Mantém escondido até ser ativado */
+          opacity: 0; /* Começa invisível */
+        }
+      
+        .overlay.visible {
+          bottom: 0; /* Sobe na tela */
+          opacity: 1; /* Torna visível */
+          z-index: 100; /* Traz para frente */
+        }
+      }
 }
