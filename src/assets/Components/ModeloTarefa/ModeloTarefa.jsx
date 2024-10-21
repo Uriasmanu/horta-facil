@@ -48,6 +48,11 @@ const ModeloTarefa = ({ status, nome, data, voluntario }) => {
         fetchVoluntario();
     }, [voluntario]); // Chama novamente se 'voluntario' mudar
 
+    const formatarData = (dataISO) => {
+        const dataObj = new Date(dataISO);
+        return `${String(dataObj.getDate()).padStart(2, '0')}/${String(dataObj.getMonth() + 1).padStart(2, '0')}`;
+    };
+
     if (loading) {
         return <div>Carregando...</div>; // Exibe mensagem enquanto carrega
     }
@@ -67,7 +72,7 @@ const ModeloTarefa = ({ status, nome, data, voluntario }) => {
                 <div className="textos">
                 <div className="info__title">{getStatusText(status)}</div> 
                     <div className="info__title">{nome}</div>
-                    <div className="info__title">{data}</div>
+                    <div className="info__title">{formatarData(data)}</div>
                     <div className="info__title voluntario">{nomeVoluntario || ""}</div>
                 </div>
             </div>
