@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BotaoRegistrar from '../../Components/BotaoRegistrar/BotaoRegistrar';
 import SideBar from '../../Components/SideBar/SideBar';
 import SideBarMobile from '../../Components/SideBarMobile/SideBarMobile';
@@ -7,10 +6,13 @@ import './_Tarefas.scss'
 import FormRegistrarTarefa from '../../Components/FormRegistrarTarefa/FormRegistrarTarefa';
 import ModeloTarefa from '../../Components/ModeloTarefa/ModeloTarefa';
 import CardDescricaoTarefa from '../../Components/CardDescricaoTarefa/CardDescricaoTarefa';
+import axios from 'axios';
 
 const Tarefas = () => {
     const [isFormVisible, setIsFormVisible] = useState(false);
-
+    const [tarefas, setTarefas] = useState([]);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const handleToggleForm = () => {
         setIsFormVisible(!isFormVisible);
@@ -19,6 +21,29 @@ const Tarefas = () => {
     const closeForm = () => {
         setIsFormVisible(false);
     };
+
+    useEffect(() => {
+        const fetchTarefas = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get('https://localhost:7193/api/Tarefas');
+                console.log('Resposta da API:', response.data); // Adicionando log aqui
+
+                if (response.data && response.data.$values) {
+                    setTarefas(response.data.$values);
+                } else {
+                    setError('Formato de dados inesperado.');
+                }
+            } catch (error) {
+                console.error('Erro ao buscar tarefas:', error);
+                setError('Não foi possível carregar as tarefas.');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchTarefas();
+    }, []);
 
     return (
         <div className="container-Tarefas">
@@ -32,26 +57,41 @@ const Tarefas = () => {
                 <div className="BotaoRegistrar">
                     <BotaoRegistrar onClick={handleToggleForm} />
                 </div>
-                
+
                 <CardDescricaoTarefa />
 
                 <div className="contain-tarefas">
                     <h2>Agenda de Tarefas</h2>
 
-                    <div className='listar-tarefas'>
-                        <ModeloTarefa />
-                       
-                    </div>
-                </div>
+                    {loading && <p>Carregando tarefas...</p>}
+                    {error && <p>{error}</p>}
 
+                    {!loading && !error && (
+                        <div className='listar-tarefas'>
+                            {tarefas.length > 0 ? (
+                                tarefas.map((tarefa) => (
+                                    <ModeloTarefa
+                                        key={tarefa.id}
+                                        nome={tarefa.nome}
+                                        descricao={tarefa.descricao} // Se você não está usando aqui, pode não ser necessário
+                                        data={tarefa.dataCriacao} // Usando dataCriacao da resposta
+                                        status={tarefa.status} // Adicionando status
+                                        voluntario={tarefa.idVoluntario} // Adicionando voluntario
+                                    />
+                                ))
+                            ) : (
+                                <p>Nenhuma tarefa encontrada.</p>
+                            )}
+                        </div>
+                    )}
+                </div>
 
                 <div className={`overlay ${isFormVisible ? 'visible' : ''}`}>
                     <FormRegistrarTarefa onClose={closeForm} />
                 </div>
             </div>
         </div>
-
-    )
-}
+    );
+};
 
 export default Tarefas;
