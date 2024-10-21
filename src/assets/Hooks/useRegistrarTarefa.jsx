@@ -6,7 +6,7 @@ const useRegistrarTarefa = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
-    const handleInputChange = (e) => {
+    const handleInputChangeTarefa = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
@@ -38,7 +38,7 @@ const useRegistrarTarefa = () => {
         formData,
         isSubmitting,
         errorMessage,
-        handleInputChange,
+        handleInputChangeTarefa,
         handleSubmit,
         isFormValid,
     };

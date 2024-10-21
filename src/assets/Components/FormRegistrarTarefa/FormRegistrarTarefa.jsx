@@ -8,19 +8,34 @@ import axios from 'axios';
 
 
 const FormRegistrarTarefa = ({ onClose }) => {
-    const [voluntarios, setVoluntarios] = useState([]);
+    const [voluntario, setVoluntario] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [FormDataTarefa, setFormDataTarefa] = useState({});
 
     const {
         formData,
         isSubmitting,
         errorMessage,
-        handleInputChange,
+        handleInputChangeTarefa,
         handleSubmit,
         isFormValid,
     } = useRegistrarTarefa();
 
+    
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+    
+        if (name === 'voluntario') {
+            console.log(`ID do voluntário selecionado: ${value}`);  // Exibe o ID no console
+        }
+    
+        setFormDataTarefa({
+            ...formData,
+            [name]: value,  // Atualiza o valor corretamente, seja para 'voluntario' ou outros campos
+        });
+    };
+    
 
     useEffect(() => {
         const fetchVoluntarios = async () => {
@@ -28,7 +43,7 @@ const FormRegistrarTarefa = ({ onClose }) => {
                 const response = await axios.get('https://localhost:7193/api/Voluntarios');
                 // Verifica se a resposta tem a estrutura esperada
                 if (response.data && response.data.$values) {
-                    setVoluntarios(response.data.$values);
+                    setVoluntario(response.data.$values);
 
 
                 } else {
@@ -80,12 +95,17 @@ const FormRegistrarTarefa = ({ onClose }) => {
                     onChange={handleInputChange}
                 />
 
-                <label htmlFor="opcoes">Escolha um voluntario</label>
-                <select id="opcoes" name="opcoes">
-                    <option value="opcao1"> </option>
-                    <option value="opcao2">Opção 2</option>
-                    <option value="opcao3">Opção 3</option>
+                <label htmlFor="voluntario">Escolha um voluntário</label>
+                <select id="voluntario" name="voluntario" value={formData.voluntario} onChange={handleInputChange}>
+                    <option value="">Nenhum</option> {/* Opção vazia */}
+                    {voluntario.map((voluntario) => (
+                        <option key={voluntario.id} value={voluntario.id}>
+                            {voluntario.nome}
+                        </option>
+                    ))}
                 </select>
+
+
 
                 <button
                     className="button-confirm"
