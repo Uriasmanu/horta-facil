@@ -15,6 +15,23 @@ const Voluntarios = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const handleUpdateVoluntario = async (id, updatedData) => {
+        try {
+            const response = await axios.put(`https://localhost:7193/api/Voluntarios/${id}`, {
+                id: id, // Certifique-se de que o ID é passado corretamente
+                nome: updatedData.nome // Passe o nome ou outros campos necessários
+            }, {
+                headers: {
+                    'Content-Type': 'application/json' // Defina o cabeçalho corretamente
+                },
+            });
+            console.log('Voluntário atualizado com sucesso', response.data);
+        } catch (error) {
+            console.error('Erro ao editar voluntário:', error);
+        }
+    };
+
+
     const handleToggleForm = () => {
         setIsFormVisible(!isFormVisible);
     };
@@ -41,12 +58,12 @@ const Voluntarios = () => {
                 // Verifica se a resposta tem a estrutura esperada
                 if (response.data && response.data.$values) {
                     setVoluntarios(response.data.$values);
-                    
+
 
                 } else {
                     setError('Formato de dados inesperado.'); // Mensagem de erro se a estrutura não estiver correta
                 }
-                
+
             } catch (error) {
                 console.error('Erro ao buscar voluntários:', error);
                 setError('Não foi possível carregar os voluntários.'); // Mensagem de erro
@@ -81,7 +98,10 @@ const Voluntarios = () => {
 
                 <div className="voluntarios">
                     {voluntarios.map((voluntario) => (
-                        <CardVoluntario key={voluntario.id} nome={voluntario.nome} id ={voluntario.id} onDelete={handleDeleteVoluntario} />
+                        <CardVoluntario key={voluntario.id} nome={voluntario.nome} id={voluntario.id} onDelete={handleDeleteVoluntario}
+                            onChange={handleUpdateVoluntario}
+                            updatedData={(newNome) => handleUpdateVoluntario(voluntario.id, { ...voluntario, nome: newNome })}
+                        />
                     ))}
                     <div className={`overlay ${isFormVisible ? 'visible' : ''}`}>
                         <FormRegistrarVoluntario onClose={closeForm} />

@@ -1,10 +1,22 @@
 import './_CardVoluntario.scss'
 import avatar from '../../../image/avatar.png'
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 
-const CardVoluntario = ({ nome, id, onDelete }) => {
-    
+const CardVoluntario = ({ nome: initialNome, id, onDelete }) => {
+    const [nome, setNome] = useState(initialNome); // Estado para o nome
+    const [isEditing, setIsEditing] = useState(false); // Estado para controle do modo de edição
+
+    const handleEditClick = () => {
+        if (isEditing) {
+            // Confirmar a alteração
+            setIsEditing(false);
+            // Aqui você pode adicionar lógica para enviar a alteração do nome para o backend, se necessário
+        } else {
+            setIsEditing(true);
+        }
+    };
     return (
         <div className="container-voluntario">
 
@@ -13,10 +25,21 @@ const CardVoluntario = ({ nome, id, onDelete }) => {
                 <div className="card__avatar">
                     <img src={avatar} alt="" />
                 </div>
-                <div className="card__title">{nome}</div>
+                {isEditing ? (
+                    <input
+                        className="card__title"
+                        value={nome}
+                        onChange={(e) => setNome(e.target.value)} // Atualiza o estado com o valor do input
+                    />
+                ) : (
+                    <h3 className="card__title">{nome}</h3> // Exibir nome como texto
+                )}
 
                 <div className="card__wrapper">
-                    <button className="card__btn">Editar</button>
+                    <button className="card__btn" onClick={handleEditClick}>
+                        {isEditing ? 'Confirmar' : 'Editar'}
+                    </button>
+
                     <button className="card__btn card__btn-solid" onClick={() => onDelete(id)}>Excluir</button>
                 </div>
             </div>
@@ -26,7 +49,7 @@ const CardVoluntario = ({ nome, id, onDelete }) => {
 
 CardVoluntario.propTypes = {
     nome: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired, // Aceita tanto string quanto número
     onDelete: PropTypes.func.isRequired,
 };
 export default CardVoluntario;
