@@ -49,7 +49,7 @@ const FormRegistrarTarefa = ({ onClose }) => {
             // Se a opção "Nenhum" for escolhida, define como null
             const selectedValue = value === '' ? null : value;
             setFormData((prev) => ({ ...prev, idVoluntario: selectedValue }));
-            console.log(`ID do voluntário selecionado: ${selectedValue}`);
+
         }
     };
 

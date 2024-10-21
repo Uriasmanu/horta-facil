@@ -10,16 +10,20 @@ const ModeloTarefa = ({ status, nome, data, voluntario }) => {
 
     useEffect(() => {
         const fetchVoluntario = async () => {
+            console.log(`Fetching volunteer with ID: ${voluntario}`); // Log para verificar o ID do voluntário
             if (voluntario) { // Verifica se voluntario está definido
                 try {
                     const response = await axios.get(`https://localhost:7193/api/Voluntarios/${voluntario}`);
-                    setNomeVoluntario(response.data.nome); // Assume que o nome do voluntário está na propriedade 'nome' da resposta
+                    console.log('Response:', response.data); // Log para ver a resposta da API
+                    setNomeVoluntario(response.data); // Assume que o nome do voluntário está na propriedade 'nome' da resposta
                 } catch (err) {
+                    console.error('Error fetching volunteer:', err); // Log do erro
                     setError('Erro ao buscar voluntário');
                 } finally {
                     setLoading(false); // Indica que a requisição terminou
                 }
             } else {
+                console.log('No volunteer ID provided.'); // Log caso não haja ID do voluntário
                 setLoading(false); // Se não houver voluntário, termina o loading
             }
         };
@@ -62,5 +66,4 @@ ModeloTarefa.propTypes = {
     voluntario: PropTypes.string,
 };
 
-
-export default ModeloTarefa;
+export default ModeloTarefa
