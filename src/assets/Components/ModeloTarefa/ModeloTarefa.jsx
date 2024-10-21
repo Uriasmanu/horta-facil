@@ -8,6 +8,23 @@ const ModeloTarefa = ({ status, nome, data, voluntario }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
+    // Função para converter status numérico em texto
+    const getStatusText = (value) => {
+        if (value < 0 || value > 2) {
+            throw new Error("Status deve ser 0 (Pendente), 1 (Em Progresso) ou 2 (Finalizado).");
+        }
+        switch (value) {
+            case 0:
+                return 'Pendente';
+            case 1:
+                return 'Em Progresso';
+            case 2:
+                return 'Finalizado';
+            default:
+                return ''; // Isso nunca deve ocorrer devido à verificação anterior
+        }
+    };
+
     useEffect(() => {
         const fetchVoluntario = async () => {
             console.log(`Fetching volunteer with ID: ${voluntario}`); // Log para verificar o ID do voluntário
@@ -48,7 +65,7 @@ const ModeloTarefa = ({ status, nome, data, voluntario }) => {
                     </svg>
                 </div>
                 <div className="textos">
-                    <div className="info__title">{status}</div>
+                <div className="info__title">{getStatusText(status)}</div> 
                     <div className="info__title">{nome}</div>
                     <div className="info__title">{data}</div>
                     <div className="info__title voluntario">{nomeVoluntario || ""}</div>
