@@ -17,19 +17,23 @@ const Voluntarios = () => {
 
     const handleUpdateVoluntario = async (id, updatedData) => {
         try {
-            const response = await axios.put(`https://localhost:7193/api/Voluntarios/${id}`, {
-                id: id, // Certifique-se de que o ID é passado corretamente
-                nome: updatedData.nome // Passe o nome ou outros campos necessários
-            }, {
+            const response = await axios.put(`https://localhost:7193/api/Voluntarios/${id}`, updatedData, {
                 headers: {
-                    'Content-Type': 'application/json' // Defina o cabeçalho corretamente
+                    'Content-Type': 'application/json'
                 },
             });
             console.log('Voluntário atualizado com sucesso', response.data);
+            // Atualiza a lista de voluntários localmente
+            setVoluntarios((prevVoluntarios) =>
+                prevVoluntarios.map((voluntario) =>
+                    voluntario.id === id ? { ...voluntario, ...updatedData } : voluntario
+                )
+            );
         } catch (error) {
             console.error('Erro ao editar voluntário:', error);
         }
     };
+
 
 
     const handleToggleForm = () => {
@@ -98,9 +102,12 @@ const Voluntarios = () => {
 
                 <div className="voluntarios">
                     {voluntarios.map((voluntario) => (
-                        <CardVoluntario key={voluntario.id} nome={voluntario.nome} id={voluntario.id} onDelete={handleDeleteVoluntario}
-                            onChange={handleUpdateVoluntario}
-                            updatedData={(newNome) => handleUpdateVoluntario(voluntario.id, { ...voluntario, nome: newNome })}
+                        <CardVoluntario
+                            key={voluntario.id}
+                            id={voluntario.id}
+                            nome={voluntario.nome}
+                            onDelete={handleDeleteVoluntario}
+                            onUpdate={handleUpdateVoluntario} // Passando a função
                         />
                     ))}
                     <div className={`overlay ${isFormVisible ? 'visible' : ''}`}>

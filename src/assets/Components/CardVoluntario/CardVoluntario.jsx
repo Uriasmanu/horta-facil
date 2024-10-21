@@ -1,22 +1,30 @@
 import './_CardVoluntario.scss'
 import avatar from '../../../image/avatar.png'
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 
-const CardVoluntario = ({ nome: initialNome, id, onDelete }) => {
-    const [nome, setNome] = useState(initialNome); // Estado para o nome
-    const [isEditing, setIsEditing] = useState(false); // Estado para controle do modo de edição
+const CardVoluntario = ({ nome: initialNome, id, onDelete, onUpdate }) => {
+    const [nome, setNome] = useState(initialNome);
+    const [isEditing, setIsEditing] = useState(false);
 
-    const handleEditClick = () => {
+    const handleEditClick = useCallback(() => {
         if (isEditing) {
-            // Confirmar a alteração
+            // Validação do nome
+            if (!nome.trim()) {
+                alert('O nome não pode ser vazio!');
+                return;
+            }
+
+            // Enviar a alteração do nome para o backend
+            onUpdate(id, { nome });
+
             setIsEditing(false);
-            // Aqui você pode adicionar lógica para enviar a alteração do nome para o backend, se necessário
         } else {
             setIsEditing(true);
         }
-    };
+    }, [isEditing, nome, onUpdate, id]);
+
     return (
         <div className="container-voluntario">
 
