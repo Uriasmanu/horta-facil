@@ -13,6 +13,7 @@ const Tarefas = () => {
     const [tarefas, setTarefas] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [detalhesTarefa, setDetalhesTarefa] = useState(null); 
 
     const handleDeleteTarefa = async (id) => {
         try {
@@ -31,6 +32,11 @@ const Tarefas = () => {
 
     const closeForm = () => {
         setIsFormVisible(false);
+    };
+
+    const handleClickTarefa = (tarefa) => {
+        setDetalhesTarefa(tarefa); // Armazena a tarefa clicada
+
     };
 
     useEffect(() => {
@@ -68,7 +74,10 @@ const Tarefas = () => {
                     <BotaoRegistrar onClick={handleToggleForm} />
                 </div>
 
-                <CardDescricaoTarefa />
+                <CardDescricaoTarefa 
+                    nomeTarefa={detalhesTarefa ? detalhesTarefa.nome : 'Nome da Tarefa'} 
+                    descricao={detalhesTarefa ? detalhesTarefa.descricao : 'Descricao'}
+                />
 
                 <div className="contain-tarefas">
                     <h2>Agenda de Tarefas</h2>
@@ -88,6 +97,7 @@ const Tarefas = () => {
                                         status={tarefa.status} // Adicionando status
                                         voluntario={tarefa.idVoluntario} // Adicionando voluntario
                                         onDelete={() => handleDeleteTarefa(tarefa.id)}
+                                        onClick={() => handleClickTarefa(tarefa)}
                                     />
                                 ))
                             ) : (
