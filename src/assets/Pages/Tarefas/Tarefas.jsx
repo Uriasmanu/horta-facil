@@ -20,6 +20,7 @@ const Tarefas = () => {
         try {
             await axios.delete(`https://localhost:7193/api/Tarefas/${id}`);
             console.log(`Tarefa com ID ${id} deletada com sucesso.`);
+            setTarefas((prevTarefas) => prevTarefas.filter((tarefa) => tarefa.id !== id));
             window.location.reload();
         } catch (error) {
             console.error('Erro ao deletar tarefa:', error);
@@ -34,11 +35,10 @@ const Tarefas = () => {
     const closeForm = () => {
         setIsFormVisible(false);
     };
-
+    
     const handleClickTarefa = (tarefa) => {
         setDetalhesTarefa(tarefa); // Armazena a tarefa clicada
-
-        if (detalhesTarefa && detalhesTarefa.id != tarefa.id) {
+        if (detalhesTarefa && detalhesTarefa.id !== tarefa.id) {
             return;
         } else {
             setIsDescricaoVisible(prevState => !prevState); // Alterna a visibilidade
@@ -83,6 +83,7 @@ const Tarefas = () => {
                     <CardDescricaoTarefa
                         nomeTarefa={detalhesTarefa ? detalhesTarefa.nome : 'Nome da Tarefa'}
                         descricao={detalhesTarefa ? detalhesTarefa.descricao : 'Descricao'}
+                        onDelete={() => detalhesTarefa && handleDeleteTarefa(detalhesTarefa.id)}
                     />
                 </div>
                 <div className="contain-tarefas">
