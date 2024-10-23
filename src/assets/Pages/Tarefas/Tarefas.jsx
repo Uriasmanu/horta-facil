@@ -13,13 +13,14 @@ const Tarefas = () => {
     const [tarefas, setTarefas] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [detalhesTarefa, setDetalhesTarefa] = useState(null); 
+    const [detalhesTarefa, setDetalhesTarefa] = useState(null);
+    const [isDescricaoVisible, setIsDescricaoVisible] = useState(false);
 
     const handleDeleteTarefa = async (id) => {
         try {
             await axios.delete(`https://localhost:7193/api/Tarefas/${id}`);
             console.log(`Tarefa com ID ${id} deletada com sucesso.`);
-           window.location.reload();
+            window.location.reload();
         } catch (error) {
             console.error('Erro ao deletar tarefa:', error);
             setError('Erro ao deletar a tarefa.');
@@ -37,6 +38,11 @@ const Tarefas = () => {
     const handleClickTarefa = (tarefa) => {
         setDetalhesTarefa(tarefa); // Armazena a tarefa clicada
 
+        if (detalhesTarefa && detalhesTarefa.id != tarefa.id) {
+            return;
+        } else {
+            setIsDescricaoVisible(prevState => !prevState); // Alterna a visibilidade
+        }
     };
 
     useEffect(() => {
@@ -73,12 +79,12 @@ const Tarefas = () => {
                 <div className="BotaoRegistrar">
                     <BotaoRegistrar onClick={handleToggleForm} />
                 </div>
-
-                <CardDescricaoTarefa 
-                    nomeTarefa={detalhesTarefa ? detalhesTarefa.nome : 'Nome da Tarefa'} 
-                    descricao={detalhesTarefa ? detalhesTarefa.descricao : 'Descricao'}
-                />
-
+                <div className={`descricaoTarefa ${isDescricaoVisible ? 'visible' : ''}`}>
+                    <CardDescricaoTarefa
+                        nomeTarefa={detalhesTarefa ? detalhesTarefa.nome : 'Nome da Tarefa'}
+                        descricao={detalhesTarefa ? detalhesTarefa.descricao : 'Descricao'}
+                    />
+                </div>
                 <div className="contain-tarefas">
                     <h2>Agenda de Tarefas</h2>
 

@@ -45,7 +45,7 @@ const ModeloTarefa = ({ status, nome, data, voluntario, onDelete, onClick }) => 
                     setLoading(false); // Indica que a requisição terminou
                 }
             } else {
-                console.log('No volunteer ID provided.'); // Log caso não haja ID do voluntário
+
                 setLoading(false); // Se não houver voluntário, termina o loading
             }
         };

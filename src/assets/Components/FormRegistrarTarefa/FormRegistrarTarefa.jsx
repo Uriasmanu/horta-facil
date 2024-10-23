@@ -44,7 +44,7 @@ const FormRegistrarTarefa = ({ onClose }) => {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         handleInputChangeTarefa(e); // Atualiza o estado no hook
-    
+
         if (name === 'idVoluntario') {
             // Se a opção "Nenhum" for escolhida, define como null
             const selectedValue = value === '' ? null : value;
@@ -79,7 +79,6 @@ const FormRegistrarTarefa = ({ onClose }) => {
                     onChange={handleInputChange}
                 />
                 <textarea
-                    
                     placeholder="Descricao"
                     name="descricao"
                     className="nome"
