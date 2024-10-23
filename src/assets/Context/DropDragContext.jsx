@@ -18,8 +18,10 @@ export const ColetarProvider = ({ children }) => {
   const listarPlantas = async () => {
     try {
       const response = await axios.get('https://localhost:7193/api/Planta/plantas'); // Requisição para API
+      
       setItems(response.data.$values); // Acessa as plantas no array $values
       setIsLoading(false); // Carregamento concluído
+      
     } catch (error) {
       console.error('Erro ao buscar plantas:', error);
       setErrorMessage('');
@@ -29,6 +31,7 @@ export const ColetarProvider = ({ children }) => {
 
   // useEffect para buscar as plantas quando o componente monta
   useEffect(() => {
+    
     listarPlantas(); // Busca as plantas ao montar o componente
   }, []);
 

@@ -28,6 +28,30 @@ const Tarefas = () => {
         }
     }
 
+    const handleAtualizaStatus = async (id) => {
+        try {
+            // Envie apenas o número diretamente, sem um objeto, e configure o cabeçalho
+            await axios.patch(`https://localhost:7193/api/Tarefas/${id}/status`, 1, {
+                headers: {
+                    'Content-Type': 'application/json' // Adiciona o cabeçalho Content-Type
+                }
+            });
+            
+            setTarefas(prevTarefas =>
+                prevTarefas.map(tarefa =>
+                    tarefa.id === id ? { ...tarefa, status: 1 } : tarefa
+                )
+            );
+            
+            console.log(`Status da tarefa com ID ${id} atualizado para 1.`);
+            window.location.reload();
+        } catch (error) {
+            console.error('Erro ao atualizar status da tarefa:', error.response?.data || error.message); // Logar resposta de erro
+            setError('Erro ao atualizar o status da tarefa.');
+        }
+    };
+    
+
     const handleToggleForm = () => {
         setIsFormVisible(!isFormVisible);
     };
@@ -35,7 +59,7 @@ const Tarefas = () => {
     const closeForm = () => {
         setIsFormVisible(false);
     };
-    
+
     const handleClickTarefa = (tarefa) => {
         setDetalhesTarefa(tarefa); // Armazena a tarefa clicada
         if (detalhesTarefa && detalhesTarefa.id !== tarefa.id) {
@@ -84,6 +108,7 @@ const Tarefas = () => {
                         nomeTarefa={detalhesTarefa ? detalhesTarefa.nome : 'Nome da Tarefa'}
                         descricao={detalhesTarefa ? detalhesTarefa.descricao : 'Descricao'}
                         onDelete={() => detalhesTarefa && handleDeleteTarefa(detalhesTarefa.id)}
+                        onClick={() => detalhesTarefa && handleAtualizaStatus(detalhesTarefa.id)}
                     />
                 </div>
                 <div className="contain-tarefas">
