@@ -3,13 +3,13 @@ import './_CardPantasMobile.scss'
 import legume from '../../../image/Greenery.svg'
 import PropTypes from 'prop-types';
 
-const CardPantas = ({ data, onDragStart }) => {
+const CardPantas = ({ data, onDragStart, onDoubleClick }) => {
     return (
         <div
             className="container-CardPantas"
             draggable
             onDragStart={(event) => onDragStart(event, data)}
-            
+            onDoubleClick={onDoubleClick} 
         >
 
             <div className="card">
@@ -30,7 +30,8 @@ const CardPantas = ({ data, onDragStart }) => {
 CardPantas.propTypes = {
     data: PropTypes.object.isRequired,
     index: PropTypes.number.isRequired,
-    onDragStart: PropTypes.func.isRequired, // Garantindo que onDragStart é passado como função
+    onDragStart: PropTypes.func.isRequired, 
+    onDoubleClick: PropTypes.func,
 };
 
 export default CardPantas;

@@ -15,7 +15,7 @@ import BotaoColheita from '../../Components/BotaoColheita/BotaoColheita';
 
 
 const Inicio = () => {
-    const { items, colhidos, isLoading, errorMessage, onDragStart, onDrop, onDragOver, idColhido } = useColeta();
+    const { items, setItems, colhidos, setColhidos, isLoading, errorMessage, onDragStart, onDrop, onDragOver, idColhido, setIdColhido } = useColeta();
 
     const [isFormVisible, setIsFormVisible] = useState(false);
 
@@ -46,6 +46,21 @@ const Inicio = () => {
         }
     };
 
+
+    // Função para lidar com o duplo clique em um card
+    const handleDoubleClick = (planta) => {
+        // Simula a ação de arrastar e soltar
+        setIdColhido(planta.id); // Armazena o ID da planta "colhida"
+        // Enviar a planta para a seção de colhidos
+        setItems((prevItems) => prevItems.filter(item => item.id !== planta.id));
+        setColhidos((prevColhidos) => {
+            const isAlreadyInColhidos = prevColhidos.some(colhido => colhido.id === planta.id);
+            if (!isAlreadyInColhidos) {
+                return [...prevColhidos, planta];
+            }
+            return prevColhidos; // Não adiciona duplicata
+        });
+    };
     return (
         <div className="container-Inicio">
 
@@ -105,7 +120,7 @@ const Inicio = () => {
                             data={planta}
                             index={index}
                             onDragStart={(event) => onDragStart(event, planta)}
-
+                            onDoubleClick={() => handleDoubleClick(planta)}
                         />
                     ))
                 )}

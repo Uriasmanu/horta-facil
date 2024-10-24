@@ -6,7 +6,7 @@
     background: #6fa77b;
     justify-content: flex-start;
     flex-direction: column;
-    gap: 30px;
+    gap: 15px;
     padding: 5% 0;
   
 
@@ -46,7 +46,7 @@
     .agenda {
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      gap: 16px;
 
       .colecao-tarefas {
         margin-top: 5%;
@@ -55,9 +55,13 @@
         gap: 15px;
         width: 100%;
       }
-
       .coletar {
-        display: none;
+        width: 240px;
+        height: 30px;
+        border: dashed 5px #827033;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
 
