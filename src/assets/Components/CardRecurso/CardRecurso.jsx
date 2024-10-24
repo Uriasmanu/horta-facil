@@ -1,4 +1,6 @@
 import './_CardRecurso.scss';
+import './_CardRecursoMobile.scss';
+
 import PropTypes from 'prop-types'; // Importa PropTypes para verificação de tipos
 import apagar from '../../../image/apagar.png';
 

@@ -1,5 +1,5 @@
 import './_CardDescricaoTarefa.scss'
-
+import './_CardDescricaoTarefaMobile.scss'
 import confirma from '../../../image/selecionado.png'
 import avatar from '../../../image/avatar2.png'
 import lixo from '../../../image/apagar.png'

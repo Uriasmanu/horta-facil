@@ -1,4 +1,5 @@
 import './_CardVoluntario.scss'
+import './_CardVoluntarioMobile.scss'
 import avatar from '../../../image/avatar.png'
 import PropTypes from 'prop-types';
 import { useCallback, useState } from 'react';

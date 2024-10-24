@@ -3,6 +3,7 @@ import BotaoRegistrar from '../../Components/BotaoRegistrar/BotaoRegistrar';
 import SideBar from '../../Components/SideBar/SideBar';
 import SideBarMobile from '../../Components/SideBarMobile/SideBarMobile';
 import './_Tarefas.scss'
+import './_TarefasMobile.scss'
 import FormRegistrarTarefa from '../../Components/FormRegistrarTarefa/FormRegistrarTarefa';
 import ModeloTarefa from '../../Components/ModeloTarefa/ModeloTarefa';
 import CardDescricaoTarefa from '../../Components/CardDescricaoTarefa/CardDescricaoTarefa';

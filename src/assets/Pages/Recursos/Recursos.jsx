@@ -3,6 +3,8 @@ import BotaoRegistrar from '../../Components/BotaoRegistrar/BotaoRegistrar';
 import SideBar from '../../Components/SideBar/SideBar';
 import SideBarMobile from '../../Components/SideBarMobile/SideBarMobile';
 import './_Recursos.scss';
+import './_RecursosMobile.scss';
+
 import FormRegistrarRecursos from '../../Components/FormRegistrarRecursos/FormRegistrarRecursos';
 import CardRecurso from '../../Components/CardRecurso/CardRecurso';
 import axios from 'axios';
