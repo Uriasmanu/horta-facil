@@ -9,7 +9,7 @@ import PropTypes from 'prop-types'
 const CardDescricaoTarefa = ({ nomeTarefa, descricao, onDelete, onClick }) => {
     return (
         <div className="CardDescricaoTarefa">
-            <div className="card">
+            <div className="card-descri">
                 <div className="text">
                     <span>{nomeTarefa}</span>
                     <p className="subtitle">{descricao}</p>
