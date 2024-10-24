@@ -25,15 +25,15 @@ const Recursos = () => {
         const fetchRecursos = async () => {
             try {
                 const response = await axios.get('https://localhost:7193/api/Recursos');
-                // Verifica se a resposta tem a estrutura esperada
                 if (response.data && response.data.$values) {
+                    console.log('Dados dos recursos:', response.data.$values); // Verifique os dados aqui
                     setRecursos(response.data.$values);
                 } else {
-                    setError('Formato de dados inesperado.'); // Mensagem de erro se a estrutura não estiver correta
+                    setError('Formato de dados inesperado.');
                 }
             } catch (error) {
                 console.error('Erro ao buscar recursos:', error);
-                setError('Não foi possível carregar os recursos.'); // Mensagem de erro
+                setError('Não foi possível carregar os recursos.');
             } finally {
                 setLoading(false);
             }
@@ -42,16 +42,38 @@ const Recursos = () => {
         fetchRecursos();
     }, []);
 
+
     const formatDate = (dateString) => {
-        const date = new Date(dateString); // Cria um objeto Date a partir da string da data
-        const day = String(date.getDate()).padStart(2, '0'); // Obtém o dia e adiciona zero à esquerda se necessário
-        const month = String(date.getMonth() + 1).padStart(2, '0'); // Obtém o mês (0-11), então adiciona 1 e zero à esquerda
-        const year = String(date.getFullYear()).slice(-2); // Obtém os últimos dois dígitos do ano
-    
-        return `${day}/${month}/${year}`; // Retorna a data no formato desejado
+        const date = new Date(dateString);
+
+        // Verifique se a data é válida
+        if (isNaN(date.getTime())) {
+            console.error('Data inválida:', dateString);
+            return 'Data inválida'; // Retorna uma string padrão para datas inválidas
+        }
+
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = String(date.getFullYear()).slice(-2);
+
+        return `${day}/${month}/${year}`;
+    };
+
+    const handleDeleteRecursos = async (id) => {
+
+        if (!id) {
+            setError('ID inválido.');
+            return;
+        }
+        try {
+            await axios.delete(`https://localhost:7193/api/Recursos/${id}`);
+            setRecursos((prevRecursos) => prevRecursos.filter(recurso => recurso.id !== id));
+        } catch (error) {
+            console.error('Erro ao excluir recursos:', error);
+            setError('Não foi possível excluir os recursos.');
+        }
     };
     
-
     return (
         <div className="container-Recursos">
             <div className="contain-sidebar">
@@ -67,14 +89,19 @@ const Recursos = () => {
                 <div className="recursos">
                     {loading && <p>Carregando recursos...</p>}
                     {error && <p>{error}</p>}
-                    {recursos.map((recurso) => (
-                        <CardRecurso
-                            key={recurso.id} // Supondo que 'id' é um identificador único
-                            tipoRecurso={recurso.tipoRecurso} // Ajuste os nomes das propriedades conforme sua estrutura
-                            nome={recurso.nome} // Ajuste os nomes das propriedades conforme sua estrutura
-                            dataCriacao={formatDate(recurso.dataCriacao)}
-                        />
-                    ))}
+                    {recursos.map((recurso) => {
+                        console.log('ID no map:', recurso.id); // Verifique os IDs retornados no map
+                        return (
+                            <CardRecurso
+                                key={recurso.id}
+                                tipoRecurso={recurso.tipoRecurso}
+                                nome={recurso.nome}
+                                dataCriacao={formatDate(recurso.dataCriacao)}
+                                onDelete={() => handleDeleteRecursos(recurso.id)} // Certifique-se de que o ID correto está sendo passado
+                            />
+                        );
+                    })}
+
                 </div>
                 <div className={`overlay ${isFormVisible ? 'visible' : ''}`}>
                     <FormRegistrarRecursos onClose={closeForm} />

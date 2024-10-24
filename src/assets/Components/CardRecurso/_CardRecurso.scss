@@ -1,5 +1,6 @@
 .cardRecurso {
   /* From Uiverse.io by SouravBandyopadhyay */
+  height: 8rem;
   .notification {
     display: flex;
     flex-direction: column;
@@ -7,7 +8,7 @@
     position: relative;
     width: 18rem;
     height: 8rem;
-    background: #ffffff;
+    background: #2e250e;
     border-radius: 1rem;
     overflow: hidden;
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
@@ -17,13 +18,13 @@
     --color: #32a6ff;
     cursor: pointer;
 
-    .data{
-        color: #99999d;
-        padding: 0 1.25rem;
-        transition: transform 300ms ease;
-        z-index: 5;
-        align-self: flex-end;
-        margin-top: 16%;
+    .data {
+      color: #99999d;
+      padding: 0 1.25rem;
+      transition: transform 300ms ease;
+      z-index: 5;
+      align-self: flex-end;
+      margin-top: 10%;
     }
   }
 
@@ -32,7 +33,7 @@
     content: "";
     inset: 0.0625rem;
     border-radius: 0.9375rem;
-    background: #fff;
+    background: #2e250e;
     z-index: 2;
   }
 
@@ -58,6 +59,22 @@
     font-size: 1.1rem;
     transition: transform 300ms ease;
     z-index: 5;
+    display: flex;
+    height: auto;
+    justify-content: space-between;
+
+    button {
+      z-index: 5;
+      background: none;
+      border: none;
+      width: 30px;
+      height: 30px;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
   }
 
   .notification:hover .notititle {
